@@ -71,12 +71,13 @@ class ViewController: UIViewController {
   @objc func tapButtonSearchCity() {
     guard let nameCity = textFieldSearchCity.text, !nameCity.isEmpty else {return}
     
-    networkManager.getCoordinate(nameCity) {
-      
+    networkManager.getCoordinate(nameCity) { [weak self] in
+      guard let self else {return}
       guard let temp = self.networkManager.weatherData?.current.temp, let description = self.networkManager.weatherData?.current.weather[0].description else {return}
       guard let icon = self.networkManager.weatherData?.current.weather[0].icon else {return}
       
-      self.networkManager.getIcon(icon.description) { result in
+      self.networkManager.getIcon(icon.description) { [weak self] result in
+        guard let self else {return}
         switch result {
         case .success(let icon):
           DispatchQueue.main.async {

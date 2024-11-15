@@ -43,7 +43,8 @@ class NetworkManager: NetworkManagerProtocol {
     request.httpMethod = "GET"
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     
-    let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
+    let dataTask = URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
+      guard let self else {return}
       
       if let response {
         print (response)
@@ -83,7 +84,8 @@ class NetworkManager: NetworkManagerProtocol {
     request.httpMethod = "GET"
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     
-    let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
+    let dataTask = URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
+      guard let self else {return}
       
       if let response {
         print (response)
