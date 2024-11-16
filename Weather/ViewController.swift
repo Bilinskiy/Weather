@@ -84,7 +84,7 @@ class ViewController: UIViewController {
             self.iconWeather.image = UIImage(data: icon)
             self.labelWeather.text = "\(temp) °C \n \(description)"
           }
-        case .failure(let error):
+        case .failure(_):
           fatalError()
         }
       }
