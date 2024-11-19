@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  ViewController.swift
 //  Weather
 //
 //  Created by Дмитрий Билинский on 11/11/24.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class HomeViewController: UIViewController {
+class ViewController: UIViewController {
   
   let networkManager: NetworkManagerProtocol = NetworkManager()
   

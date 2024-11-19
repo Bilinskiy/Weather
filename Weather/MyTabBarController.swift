@@ -11,18 +11,16 @@ class MyTabBarController: UITabBarController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    self.tabBar.addBlur()
-    
-    
-    
+    tabBar.layer.cornerRadius = 25
+    tabBar.backgroundColor = .secondarySystemBackground
     setupViewControllersTabBar()
+    
   }
   
   func setupViewControllersTabBar() {
-    let firstVC = HomeViewController()
+    let firstVC = ViewController()
     firstVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
-    
+   
     let mapsVC = MapViewController()
     mapsVC.tabBarItem = UITabBarItem(title: "Map", image: UIImage(systemName: "map"), selectedImage: UIImage(systemName: "map.fill"))
     
