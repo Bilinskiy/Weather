@@ -8,7 +8,7 @@
 import UIKit
 import GoogleMaps
 
-class MapViewController: UIViewController, GMSMapViewDelegate {
+class MapViewController: UIViewController {
   
   private let keyGoogleMaps: String = {
     guard let key = Bundle.main.object(forInfoDictionaryKey: "GoogleMapsKey") as? String else { fatalError("GoogleMapsKey not found") }
@@ -36,8 +36,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     self.view = mapView
   }
   
+}
+
+extension MapViewController: GMSMapViewDelegate {
   func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
     print (coordinate.latitude, coordinate.longitude)
   }
-  
 }
