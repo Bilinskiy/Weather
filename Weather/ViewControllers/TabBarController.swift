@@ -1,5 +1,5 @@
 //
-//  MyTabBarController.swift
+//  TabBarController.swift
 //  Weather
 //
 //  Created by Дмитрий Билинский on 11/19/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyTabBarController: UITabBarController {
+class TabBarController: UITabBarController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -19,7 +19,7 @@ class MyTabBarController: UITabBarController {
   }
   
   func setupViewControllersTabBar() {
-    let firstVC = ViewController()
+    let firstVC = HomeViewController()
     firstVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
    
     let mapsVC = MapViewController()

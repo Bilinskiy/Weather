@@ -10,14 +10,14 @@
 		D0382C5C2CE3392C00FD2D64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382C522CE3392C00FD2D64 /* AppDelegate.swift */; };
 		D0382C5D2CE3392C00FD2D64 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382C572CE3392C00FD2D64 /* NetworkManager.swift */; };
 		D0382C5E2CE3392C00FD2D64 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382C582CE3392C00FD2D64 /* SceneDelegate.swift */; };
-		D0382C5F2CE3392C00FD2D64 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382C592CE3392C00FD2D64 /* ViewController.swift */; };
+		D0382C5F2CE3392C00FD2D64 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382C592CE3392C00FD2D64 /* HomeViewController.swift */; };
 		D0382C602CE3392C00FD2D64 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382C5A2CE3392C00FD2D64 /* WeatherModel.swift */; };
 		D0382C612CE3392C00FD2D64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0382C532CE3392C00FD2D64 /* Assets.xcassets */; };
 		D0382C632CE3392C00FD2D64 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0382C562CE3392C00FD2D64 /* LaunchScreen.storyboard */; };
 		D0382C662CE35BBA00FD2D64 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D0382C652CE35BBA00FD2D64 /* SnapKit */; };
 		D0382CA92CEC786600FD2D64 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382CA82CEC786600FD2D64 /* MapViewController.swift */; };
 		D0382CAC2CEC789600FD2D64 /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = D0382CAB2CEC789600FD2D64 /* GoogleMaps */; };
-		D0382CBE2CEC84BE00FD2D64 /* MyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382CBD2CEC84BE00FD2D64 /* MyTabBarController.swift */; };
+		D0382CBE2CEC84BE00FD2D64 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382CBD2CEC84BE00FD2D64 /* TabBarController.swift */; };
 		D0382CCE2CEC9C4F00FD2D64 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382CCD2CEC9C4F00FD2D64 /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,10 +29,10 @@
 		D0382C552CE3392C00FD2D64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0382C572CE3392C00FD2D64 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D0382C582CE3392C00FD2D64 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D0382C592CE3392C00FD2D64 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D0382C592CE3392C00FD2D64 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D0382C5A2CE3392C00FD2D64 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		D0382CA82CEC786600FD2D64 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		D0382CBD2CEC84BE00FD2D64 /* MyTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabBarController.swift; sourceTree = "<group>"; };
+		D0382CBD2CEC84BE00FD2D64 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D0382CCD2CEC9C4F00FD2D64 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,19 +68,59 @@
 		D0382C5B2CE3392C00FD2D64 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				D0382C542CE3392C00FD2D64 /* Info.plist */,
+				D0382CD12CED0AB000FD2D64 /* Resources */,
+				D0382CD02CED0AA100FD2D64 /* Extension */,
+				D0382CD22CED0ADE00FD2D64 /* Model */,
+				D0382CD32CED0AE500FD2D64 /* Manager */,
+				D0382CCF2CED0A7600FD2D64 /* ViewControllers */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		D0382CCF2CED0A7600FD2D64 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D0382CBD2CEC84BE00FD2D64 /* TabBarController.swift */,
+				D0382C592CE3392C00FD2D64 /* HomeViewController.swift */,
+				D0382CA82CEC786600FD2D64 /* MapViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		D0382CD02CED0AA100FD2D64 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D0382CCD2CEC9C4F00FD2D64 /* UIView+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		D0382CD12CED0AB000FD2D64 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				D0382C522CE3392C00FD2D64 /* AppDelegate.swift */,
 				D0382C582CE3392C00FD2D64 /* SceneDelegate.swift */,
 				D0382C532CE3392C00FD2D64 /* Assets.xcassets */,
-				D0382C542CE3392C00FD2D64 /* Info.plist */,
 				D0382C562CE3392C00FD2D64 /* LaunchScreen.storyboard */,
-				D0382CBD2CEC84BE00FD2D64 /* MyTabBarController.swift */,
-				D0382C5A2CE3392C00FD2D64 /* WeatherModel.swift */,
-				D0382C572CE3392C00FD2D64 /* NetworkManager.swift */,
-				D0382C592CE3392C00FD2D64 /* ViewController.swift */,
-				D0382CA82CEC786600FD2D64 /* MapViewController.swift */,
-				D0382CCD2CEC9C4F00FD2D64 /* UIView+Extension.swift */,
 			);
-			path = Weather;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D0382CD22CED0ADE00FD2D64 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D0382C5A2CE3392C00FD2D64 /* WeatherModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D0382CD32CED0AE500FD2D64 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				D0382C572CE3392C00FD2D64 /* NetworkManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,9 +207,9 @@
 				D0382CCE2CEC9C4F00FD2D64 /* UIView+Extension.swift in Sources */,
 				D0382C5D2CE3392C00FD2D64 /* NetworkManager.swift in Sources */,
 				D0382C5E2CE3392C00FD2D64 /* SceneDelegate.swift in Sources */,
-				D0382C5F2CE3392C00FD2D64 /* ViewController.swift in Sources */,
+				D0382C5F2CE3392C00FD2D64 /* HomeViewController.swift in Sources */,
 				D0382C602CE3392C00FD2D64 /* WeatherModel.swift in Sources */,
-				D0382CBE2CEC84BE00FD2D64 /* MyTabBarController.swift in Sources */,
+				D0382CBE2CEC84BE00FD2D64 /* TabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
