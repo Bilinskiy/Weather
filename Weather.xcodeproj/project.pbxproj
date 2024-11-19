@@ -18,6 +18,7 @@
 		D0382CA92CEC786600FD2D64 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382CA82CEC786600FD2D64 /* MapViewController.swift */; };
 		D0382CAC2CEC789600FD2D64 /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = D0382CAB2CEC789600FD2D64 /* GoogleMaps */; };
 		D0382CBE2CEC84BE00FD2D64 /* MyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382CBD2CEC84BE00FD2D64 /* MyTabBarController.swift */; };
+		D0382CCE2CEC9C4F00FD2D64 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382CCD2CEC9C4F00FD2D64 /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		D0382C5A2CE3392C00FD2D64 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		D0382CA82CEC786600FD2D64 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D0382CBD2CEC84BE00FD2D64 /* MyTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabBarController.swift; sourceTree = "<group>"; };
+		D0382CCD2CEC9C4F00FD2D64 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				D0382C572CE3392C00FD2D64 /* NetworkManager.swift */,
 				D0382C592CE3392C00FD2D64 /* ViewController.swift */,
 				D0382CA82CEC786600FD2D64 /* MapViewController.swift */,
+				D0382CCD2CEC9C4F00FD2D64 /* UIView+Extension.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			files = (
 				D0382C5C2CE3392C00FD2D64 /* AppDelegate.swift in Sources */,
 				D0382CA92CEC786600FD2D64 /* MapViewController.swift in Sources */,
+				D0382CCE2CEC9C4F00FD2D64 /* UIView+Extension.swift in Sources */,
 				D0382C5D2CE3392C00FD2D64 /* NetworkManager.swift in Sources */,
 				D0382C5E2CE3392C00FD2D64 /* SceneDelegate.swift in Sources */,
 				D0382C5F2CE3392C00FD2D64 /* ViewController.swift in Sources */,

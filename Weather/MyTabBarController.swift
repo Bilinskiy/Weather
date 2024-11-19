@@ -11,8 +11,9 @@ class MyTabBarController: UITabBarController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    tabBar.layer.cornerRadius = 25
-    tabBar.backgroundColor = .secondarySystemBackground
+
+    self.tabBar.addBlur()
+    
     setupViewControllersTabBar()
     
   }
