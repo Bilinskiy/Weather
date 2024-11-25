@@ -64,32 +64,22 @@ class HomeViewController: UIViewController {
     view.backgroundColor = .white
     addSubview()
     
-    
     updateViewConstraints()
   }
   
   @objc func tapButtonSearchCity() {
     guard let nameCity = textFieldSearchCity.text, !nameCity.isEmpty else {return}
     
-    networkManager.getCoordinate(nameCity) { [weak self] in
-      guard let self else {return}
-      guard let temp = self.networkManager.weatherData?.current.temp, let description = self.networkManager.weatherData?.current.weather[0].description else {return}
-      guard let icon = self.networkManager.weatherData?.current.weather[0].icon else {return}
+    Task {
+      guard let coordinate = try await networkManager.getCoordinate(nameCity).first else {return}
+      try await networkManager.getWeather(coordinate)
+      guard let icon = self.networkManager.weatherData?.current.weather[0].icon, let temp = self.networkManager.weatherData?.current.temp, let description = self.networkManager.weatherData?.current.weather[0].description else {return}
+      let imageIcon = try await networkManager.getIcon(icon.description)
       
-      self.networkManager.getIcon(icon.description) { [weak self] result in
-        guard let self else {return}
-        switch result {
-        case .success(let icon):
-          DispatchQueue.main.async {
-            self.iconWeather.image = UIImage(data: icon)
-            self.labelWeather.text = "\(temp) °C \n \(description)"
-          }
-        case .failure(_):
-          fatalError()
-        }
-      }
+     
+      self.iconWeather.image = UIImage(data: imageIcon)
+      self.labelWeather.text = "\(temp) °C \n \(description)"
     }
-    
   }
   
   func addSubview() {

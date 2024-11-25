@@ -12,7 +12,7 @@ class TabBarController: UITabBarController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    self.tabBar.addBlur()
+    self.tabBar.addBlur(.light)
     
     setupViewControllersTabBar()
     
