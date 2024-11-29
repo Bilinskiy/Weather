@@ -10,7 +10,7 @@ import SnapKit
 
 class HoursWeatherTableViewCell: UITableViewCell {
   
-  let networkManager: NetworkManagerProtocol = NetworkManager()
+  let networkManager: NetworkManagerProtocol = ParametersNetworkRequest.manager.manager()
   var hourlyWeather: [Hourly]?
   
   lazy var collectionView: UICollectionView = {

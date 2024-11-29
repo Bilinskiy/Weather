@@ -10,7 +10,7 @@ import SnapKit
 
 class HomeViewController: UIViewController {
   
-  let networkManager: NetworkManagerProtocol = NetworkManager()
+  lazy var networkManager: NetworkManagerProtocol = ParametersNetworkRequest.manager.manager()
   var weatherData: WeatherModel?
   
   lazy var textFieldSearchCity: UITextField = {
@@ -110,19 +110,23 @@ class HomeViewController: UIViewController {
     guard let nameCity = textFieldSearchCity.text, !nameCity.isEmpty else {return}
     
     Task {
-      guard let coordinate = try await networkManager.getCoordinate(nameCity).first else {return}
-      
-      weatherData = try await networkManager.getWeather(coordinate)
-      
-      guard let temp = self.weatherData?.current.temp, let description = self.weatherData?.current.weather[0].description, let feelsLike = self.weatherData?.current.feelsLike else {return}
-      
-      self.labelWeatherNameCity.text = coordinate.name?.description
-      self.labelWeatherTemp.text = "\(temp.roundingNumber())°"
-      self.labelWeatherDescription.text = description.description
-      self.labelWeatherFeelsLike.text = "ощущается как \(feelsLike)°"
-      
-      tableView.reloadData()
-      tableView.isHidden = false
+      do {
+        guard let coordinate = try await networkManager.getCoordinate(nameCity).first, let lat = coordinate.lat, let lon = coordinate.lon else {return}
+        
+        weatherData = try await networkManager.getWeather(lat: lat, lon: lon)
+        
+        guard let temp = self.weatherData?.current.temp, let description = self.weatherData?.current.weather[0].description, let feelsLike = self.weatherData?.current.feelsLike else {return}
+        
+        self.labelWeatherNameCity.text = coordinate.name?.description
+        self.labelWeatherTemp.text = "\(temp.roundingNumber())°"
+        self.labelWeatherDescription.text = description.description
+        self.labelWeatherFeelsLike.text = "ощущается как \(feelsLike)°"
+        
+        tableView.reloadData()
+        tableView.isHidden = false
+      } catch {
+        fatalError()
+      }
     }
   }
   

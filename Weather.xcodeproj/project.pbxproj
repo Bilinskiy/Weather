@@ -17,6 +17,9 @@
 		D0382CA92CEC786600FD2D64 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382CA82CEC786600FD2D64 /* MapViewController.swift */; };
 		D0382CBE2CEC84BE00FD2D64 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382CBD2CEC84BE00FD2D64 /* TabBarController.swift */; };
 		D0382CCE2CEC9C4F00FD2D64 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382CCD2CEC9C4F00FD2D64 /* UIView+Extension.swift */; };
+		D046F9DD2CF9D2A2003B8F2B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D046F9DC2CF9D2A2003B8F2B /* Alamofire */; };
+		D046F9DF2CF9D2D2003B8F2B /* AlamofireNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D046F9DE2CF9D2D2003B8F2B /* AlamofireNetworkManager.swift */; };
+		D046F9E12CF9E1F9003B8F2B /* ParametersNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D046F9E02CF9E1F9003B8F2B /* ParametersNetworkRequest.swift */; };
 		D05CB51C2CF51B9C00E684E5 /* HoursWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CB51B2CF51B9C00E684E5 /* HoursWeatherTableViewCell.swift */; };
 		D05CB52E2CF5BDE300E684E5 /* DailyWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CB52D2CF5BDE300E684E5 /* DailyWeatherTableViewCell.swift */; };
 		D05CB5302CF5BE6E00E684E5 /* HoursWeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CB52F2CF5BE6E00E684E5 /* HoursWeatherCollectionViewCell.swift */; };
@@ -39,6 +42,8 @@
 		D0382CA82CEC786600FD2D64 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D0382CBD2CEC84BE00FD2D64 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D0382CCD2CEC9C4F00FD2D64 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		D046F9DE2CF9D2D2003B8F2B /* AlamofireNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkManager.swift; sourceTree = "<group>"; };
+		D046F9E02CF9E1F9003B8F2B /* ParametersNetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersNetworkRequest.swift; sourceTree = "<group>"; };
 		D05CB51B2CF51B9C00E684E5 /* HoursWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursWeatherTableViewCell.swift; sourceTree = "<group>"; };
 		D05CB52D2CF5BDE300E684E5 /* DailyWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherTableViewCell.swift; sourceTree = "<group>"; };
 		D05CB52F2CF5BE6E00E684E5 /* HoursWeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursWeatherCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -51,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D046F9DD2CF9D2A2003B8F2B /* Alamofire in Frameworks */,
 				D05CB5372CF8931A00E684E5 /* GoogleMaps in Frameworks */,
 				D05CB53A2CF8932300E684E5 /* SnapKit in Frameworks */,
 			);
@@ -132,6 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				D0382C572CE3392C00FD2D64 /* NetworkManager.swift */,
+				D046F9DE2CF9D2D2003B8F2B /* AlamofireNetworkManager.swift */,
+				D046F9E02CF9E1F9003B8F2B /* ParametersNetworkRequest.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -165,6 +173,7 @@
 			packageProductDependencies = (
 				D05CB5362CF8931A00E684E5 /* GoogleMaps */,
 				D05CB5392CF8932300E684E5 /* SnapKit */,
+				D046F9DC2CF9D2A2003B8F2B /* Alamofire */,
 			);
 			productName = Weather;
 			productReference = D0382C122CE1F67400FD2D64 /* Weather.app */;
@@ -197,6 +206,7 @@
 			packageReferences = (
 				D05CB5352CF8931A00E684E5 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */,
 				D05CB5382CF8932300E684E5 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				D046F9DB2CF9D2A2003B8F2B /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D0382C132CE1F67400FD2D64 /* Products */;
@@ -232,8 +242,10 @@
 				D0382C5D2CE3392C00FD2D64 /* NetworkManager.swift in Sources */,
 				D0382C5E2CE3392C00FD2D64 /* SceneDelegate.swift in Sources */,
 				D0382C5F2CE3392C00FD2D64 /* HomeViewController.swift in Sources */,
+				D046F9DF2CF9D2D2003B8F2B /* AlamofireNetworkManager.swift in Sources */,
 				D05CB52E2CF5BDE300E684E5 /* DailyWeatherTableViewCell.swift in Sources */,
 				D05CB5342CF8886F00E684E5 /* Int+Extension.swift in Sources */,
+				D046F9E12CF9E1F9003B8F2B /* ParametersNetworkRequest.swift in Sources */,
 				D0382C602CE3392C00FD2D64 /* WeatherModel.swift in Sources */,
 				D05CB51C2CF51B9C00E684E5 /* HoursWeatherTableViewCell.swift in Sources */,
 				D05CB5322CF8691400E684E5 /* Float+Extension.swift in Sources */,
@@ -452,6 +464,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D046F9DB2CF9D2A2003B8F2B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
 		D05CB5352CF8931A00E684E5 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/googlemaps/ios-maps-sdk";
@@ -471,6 +491,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D046F9DC2CF9D2A2003B8F2B /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D046F9DB2CF9D2A2003B8F2B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		D05CB5362CF8931A00E684E5 /* GoogleMaps */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D05CB5352CF8931A00E684E5 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */;

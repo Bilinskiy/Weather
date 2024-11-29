@@ -11,7 +11,7 @@ import GoogleMaps
 
 class MapViewController: UIViewController {
  
-  let networkManager: NetworkManagerProtocol = NetworkManager()
+  let networkManager: NetworkManagerProtocol = ParametersNetworkRequest.manager.manager()
   var currentWeather: Current?
   
   private let keyGoogleMaps: String = {
@@ -119,10 +119,8 @@ extension MapViewController: GMSMapViewDelegate {
   func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
     mapView.clear()
     
-    Task {
-      let coordinates = CoordinateCity(lat: Float(coordinate.latitude), lon: Float(coordinate.longitude), name: nil)
-      
-      currentWeather = try await networkManager.getWeather(coordinates).current
+    Task {      
+      currentWeather = try await networkManager.getWeather(lat: Float(coordinate.latitude), lon: Float(coordinate.longitude)).current
       
       guard let icon = self.currentWeather?.weather.first?.icon, let temp = self.currentWeather?.temp else {return}
       
