@@ -11,6 +11,7 @@ import Foundation
 struct CoordinateCity: Decodable {
   let lat: Float?
   let lon: Float?
+  let name: String?
 }
 
 //MARK: - WeatherModel -

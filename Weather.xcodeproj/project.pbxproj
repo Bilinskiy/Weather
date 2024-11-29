@@ -10,11 +10,23 @@
 		D0382C5C2CE3392C00FD2D64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382C522CE3392C00FD2D64 /* AppDelegate.swift */; };
 		D0382C5D2CE3392C00FD2D64 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382C572CE3392C00FD2D64 /* NetworkManager.swift */; };
 		D0382C5E2CE3392C00FD2D64 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382C582CE3392C00FD2D64 /* SceneDelegate.swift */; };
-		D0382C5F2CE3392C00FD2D64 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382C592CE3392C00FD2D64 /* ViewController.swift */; };
+		D0382C5F2CE3392C00FD2D64 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382C592CE3392C00FD2D64 /* HomeViewController.swift */; };
 		D0382C602CE3392C00FD2D64 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382C5A2CE3392C00FD2D64 /* WeatherModel.swift */; };
 		D0382C612CE3392C00FD2D64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0382C532CE3392C00FD2D64 /* Assets.xcassets */; };
 		D0382C632CE3392C00FD2D64 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0382C562CE3392C00FD2D64 /* LaunchScreen.storyboard */; };
-		D0382C662CE35BBA00FD2D64 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D0382C652CE35BBA00FD2D64 /* SnapKit */; };
+		D0382CA92CEC786600FD2D64 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382CA82CEC786600FD2D64 /* MapViewController.swift */; };
+		D0382CBE2CEC84BE00FD2D64 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382CBD2CEC84BE00FD2D64 /* TabBarController.swift */; };
+		D0382CCE2CEC9C4F00FD2D64 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382CCD2CEC9C4F00FD2D64 /* UIView+Extension.swift */; };
+		D046F9DD2CF9D2A2003B8F2B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D046F9DC2CF9D2A2003B8F2B /* Alamofire */; };
+		D046F9DF2CF9D2D2003B8F2B /* AlamofireNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D046F9DE2CF9D2D2003B8F2B /* AlamofireNetworkManager.swift */; };
+		D046F9E12CF9E1F9003B8F2B /* ParametersNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D046F9E02CF9E1F9003B8F2B /* ParametersNetworkRequest.swift */; };
+		D05CB51C2CF51B9C00E684E5 /* HoursWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CB51B2CF51B9C00E684E5 /* HoursWeatherTableViewCell.swift */; };
+		D05CB52E2CF5BDE300E684E5 /* DailyWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CB52D2CF5BDE300E684E5 /* DailyWeatherTableViewCell.swift */; };
+		D05CB5302CF5BE6E00E684E5 /* HoursWeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CB52F2CF5BE6E00E684E5 /* HoursWeatherCollectionViewCell.swift */; };
+		D05CB5322CF8691400E684E5 /* Float+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CB5312CF8691400E684E5 /* Float+Extension.swift */; };
+		D05CB5342CF8886F00E684E5 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CB5332CF8886F00E684E5 /* Int+Extension.swift */; };
+		D05CB5372CF8931A00E684E5 /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = D05CB5362CF8931A00E684E5 /* GoogleMaps */; };
+		D05CB53A2CF8932300E684E5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D05CB5392CF8932300E684E5 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,8 +37,18 @@
 		D0382C552CE3392C00FD2D64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0382C572CE3392C00FD2D64 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D0382C582CE3392C00FD2D64 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D0382C592CE3392C00FD2D64 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D0382C592CE3392C00FD2D64 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D0382C5A2CE3392C00FD2D64 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		D0382CA82CEC786600FD2D64 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		D0382CBD2CEC84BE00FD2D64 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		D0382CCD2CEC9C4F00FD2D64 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		D046F9DE2CF9D2D2003B8F2B /* AlamofireNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkManager.swift; sourceTree = "<group>"; };
+		D046F9E02CF9E1F9003B8F2B /* ParametersNetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersNetworkRequest.swift; sourceTree = "<group>"; };
+		D05CB51B2CF51B9C00E684E5 /* HoursWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursWeatherTableViewCell.swift; sourceTree = "<group>"; };
+		D05CB52D2CF5BDE300E684E5 /* DailyWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherTableViewCell.swift; sourceTree = "<group>"; };
+		D05CB52F2CF5BE6E00E684E5 /* HoursWeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursWeatherCollectionViewCell.swift; sourceTree = "<group>"; };
+		D05CB5312CF8691400E684E5 /* Float+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Extension.swift"; sourceTree = "<group>"; };
+		D05CB5332CF8886F00E684E5 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,7 +56,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0382C662CE35BBA00FD2D64 /* SnapKit in Frameworks */,
+				D046F9DD2CF9D2A2003B8F2B /* Alamofire in Frameworks */,
+				D05CB5372CF8931A00E684E5 /* GoogleMaps in Frameworks */,
+				D05CB53A2CF8932300E684E5 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,16 +84,74 @@
 		D0382C5B2CE3392C00FD2D64 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				D0382C542CE3392C00FD2D64 /* Info.plist */,
+				D0382CD12CED0AB000FD2D64 /* Resources */,
+				D0382CD02CED0AA100FD2D64 /* Extension */,
+				D0382CD22CED0ADE00FD2D64 /* Model */,
+				D0382CD32CED0AE500FD2D64 /* Manager */,
+				D05CB51D2CF51BCF00E684E5 /* ViewCell */,
+				D0382CCF2CED0A7600FD2D64 /* ViewControllers */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		D0382CCF2CED0A7600FD2D64 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D0382CBD2CEC84BE00FD2D64 /* TabBarController.swift */,
+				D0382C592CE3392C00FD2D64 /* HomeViewController.swift */,
+				D0382CA82CEC786600FD2D64 /* MapViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		D0382CD02CED0AA100FD2D64 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D05CB5312CF8691400E684E5 /* Float+Extension.swift */,
+				D05CB5332CF8886F00E684E5 /* Int+Extension.swift */,
+				D0382CCD2CEC9C4F00FD2D64 /* UIView+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		D0382CD12CED0AB000FD2D64 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				D0382C522CE3392C00FD2D64 /* AppDelegate.swift */,
 				D0382C582CE3392C00FD2D64 /* SceneDelegate.swift */,
 				D0382C532CE3392C00FD2D64 /* Assets.xcassets */,
-				D0382C542CE3392C00FD2D64 /* Info.plist */,
 				D0382C562CE3392C00FD2D64 /* LaunchScreen.storyboard */,
-				D0382C5A2CE3392C00FD2D64 /* WeatherModel.swift */,
-				D0382C572CE3392C00FD2D64 /* NetworkManager.swift */,
-				D0382C592CE3392C00FD2D64 /* ViewController.swift */,
 			);
-			path = Weather;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D0382CD22CED0ADE00FD2D64 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D0382C5A2CE3392C00FD2D64 /* WeatherModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D0382CD32CED0AE500FD2D64 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				D0382C572CE3392C00FD2D64 /* NetworkManager.swift */,
+				D046F9DE2CF9D2D2003B8F2B /* AlamofireNetworkManager.swift */,
+				D046F9E02CF9E1F9003B8F2B /* ParametersNetworkRequest.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		D05CB51D2CF51BCF00E684E5 /* ViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				D05CB51B2CF51B9C00E684E5 /* HoursWeatherTableViewCell.swift */,
+				D05CB52F2CF5BE6E00E684E5 /* HoursWeatherCollectionViewCell.swift */,
+				D05CB52D2CF5BDE300E684E5 /* DailyWeatherTableViewCell.swift */,
+			);
+			path = ViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -89,7 +171,9 @@
 			);
 			name = Weather;
 			packageProductDependencies = (
-				D0382C652CE35BBA00FD2D64 /* SnapKit */,
+				D05CB5362CF8931A00E684E5 /* GoogleMaps */,
+				D05CB5392CF8932300E684E5 /* SnapKit */,
+				D046F9DC2CF9D2A2003B8F2B /* Alamofire */,
 			);
 			productName = Weather;
 			productReference = D0382C122CE1F67400FD2D64 /* Weather.app */;
@@ -120,7 +204,9 @@
 			mainGroup = D0382C092CE1F67400FD2D64;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				D0382C642CE35BBA00FD2D64 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				D05CB5352CF8931A00E684E5 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */,
+				D05CB5382CF8932300E684E5 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				D046F9DB2CF9D2A2003B8F2B /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D0382C132CE1F67400FD2D64 /* Products */;
@@ -150,10 +236,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0382C5C2CE3392C00FD2D64 /* AppDelegate.swift in Sources */,
+				D0382CA92CEC786600FD2D64 /* MapViewController.swift in Sources */,
+				D05CB5302CF5BE6E00E684E5 /* HoursWeatherCollectionViewCell.swift in Sources */,
+				D0382CCE2CEC9C4F00FD2D64 /* UIView+Extension.swift in Sources */,
 				D0382C5D2CE3392C00FD2D64 /* NetworkManager.swift in Sources */,
 				D0382C5E2CE3392C00FD2D64 /* SceneDelegate.swift in Sources */,
-				D0382C5F2CE3392C00FD2D64 /* ViewController.swift in Sources */,
+				D0382C5F2CE3392C00FD2D64 /* HomeViewController.swift in Sources */,
+				D046F9DF2CF9D2D2003B8F2B /* AlamofireNetworkManager.swift in Sources */,
+				D05CB52E2CF5BDE300E684E5 /* DailyWeatherTableViewCell.swift in Sources */,
+				D05CB5342CF8886F00E684E5 /* Int+Extension.swift in Sources */,
+				D046F9E12CF9E1F9003B8F2B /* ParametersNetworkRequest.swift in Sources */,
 				D0382C602CE3392C00FD2D64 /* WeatherModel.swift in Sources */,
+				D05CB51C2CF51B9C00E684E5 /* HoursWeatherTableViewCell.swift in Sources */,
+				D05CB5322CF8691400E684E5 /* Float+Extension.swift in Sources */,
+				D0382CBE2CEC84BE00FD2D64 /* TabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,6 +274,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B9RY2H98ND;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Weather/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -204,6 +301,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B9RY2H98ND;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Weather/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -366,7 +464,23 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D0382C642CE35BBA00FD2D64 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		D046F9DB2CF9D2A2003B8F2B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
+		D05CB5352CF8931A00E684E5 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googlemaps/ios-maps-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.2.0;
+			};
+		};
+		D05CB5382CF8932300E684E5 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -377,9 +491,19 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D0382C652CE35BBA00FD2D64 /* SnapKit */ = {
+		D046F9DC2CF9D2A2003B8F2B /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D0382C642CE35BBA00FD2D64 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = D046F9DB2CF9D2A2003B8F2B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		D05CB5362CF8931A00E684E5 /* GoogleMaps */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D05CB5352CF8931A00E684E5 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */;
+			productName = GoogleMaps;
+		};
+		D05CB5392CF8932300E684E5 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D05CB5382CF8932300E684E5 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */

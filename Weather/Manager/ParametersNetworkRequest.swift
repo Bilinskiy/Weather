@@ -1,0 +1,69 @@
+//
+//  ParametersNetworkRequest.swift
+//  Weather
+//
+//  Created by Дмитрий Билинский on 11/29/24.
+//
+
+import Foundation
+
+protocol NetworkManagerProtocol {
+  func getCoordinate(_ nameCity: String) async throws -> [CoordinateCity]
+  func getWeather(lat: Float, lon: Float) async throws -> WeatherModel
+  func getIcon(_ icon: String) async throws -> Data
+}
+
+enum Language {
+  case ru
+  case en
+  case be
+  case fr
+  case pl
+}
+
+enum Units {
+  case standard
+  case metric
+  case imperial
+}
+
+enum ManagerNetwork {
+  case alamofire
+  case urlSession
+  
+  func manager() -> NetworkManagerProtocol {
+    switch self {
+    case .alamofire:
+      return AlamofireNetworkManager()
+    case .urlSession:
+      return NetworkManager()
+    }
+  }
+  
+}
+
+struct ParametersNetworkRequest {
+  
+  static var manager: ManagerNetwork = .urlSession
+  
+  static let keyOpenWeather: String = {
+    guard let key = Bundle.main.object(forInfoDictionaryKey: "OpenWeatherKey") as? String else { fatalError("keyOpenWeather not found") }
+    return key
+  }()
+  
+  static let lang: Language = .ru
+  static let units: Units = .metric
+  
+  static var baseURL: String = "https://api.openweathermap.org"
+  
+  static var coordinateURL: String {
+    baseURL.appending("/geo/1.0/direct")
+  }
+  
+  static var weatherURL: String {
+    baseURL.appending("/data/2.5/onecall")
+  }
+  
+  static var iconURL: String = "https://openweathermap.org/img/wn/"
+  
+}
