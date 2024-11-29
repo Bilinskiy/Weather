@@ -11,11 +11,13 @@ import SnapKit
 class HomeViewController: UIViewController {
   
   let networkManager: NetworkManagerProtocol = NetworkManager()
+  var weatherData: WeatherModel?
   
   lazy var textFieldSearchCity: UITextField = {
     var textField = UITextField()
     textField.placeholder = "Name City"
     textField.borderStyle = .roundedRect
+    textField.enablesReturnKeyAutomatically = false
     return textField
   }()
   
@@ -28,29 +30,52 @@ class HomeViewController: UIViewController {
     return button
   }()
   
-  lazy var labelWeather: UILabel = {
+  lazy var labelWeatherNameCity: UILabel = {
     var label = UILabel()
     label.numberOfLines = 2
     label.textAlignment = .center
-    label.font = label.font.withSize(25)
+    label.font = label.font.withSize(35)
     label.textColor = .black
     return label
   }()
   
-  lazy var iconWeather: UIImageView = {
-    var iconWeather =  UIImageView()
-    return iconWeather
+  lazy var labelWeatherTemp: UILabel = {
+    var label = UILabel()
+    label.numberOfLines = 2
+    label.textAlignment = .center
+    label.font = label.font.withSize(35)
+    label.textColor = .black
+    return label
   }()
   
-  lazy var verticalStack: UIStackView = {
-    var stack = UIStackView(arrangedSubviews: [labelWeather, iconWeather])
+  lazy var labelWeatherDescription: UILabel = {
+    var label = UILabel()
+    label.layer.opacity = 0.7
+    label.numberOfLines = 2
+    label.textAlignment = .center
+    label.font = label.font.withSize(14)
+    label.textColor = .black
+    return label
+  }()
+  
+  lazy var labelWeatherFeelsLike: UILabel = {
+    var label = UILabel()
+    label.numberOfLines = 2
+    label.textAlignment = .center
+    label.font = label.font.withSize(10)
+    label.textColor = .black
+    return label
+  }()
+  
+  lazy var verticalStackWeather: UIStackView = {
+    var stack = UIStackView(arrangedSubviews: [labelWeatherNameCity, labelWeatherTemp, labelWeatherDescription, labelWeatherFeelsLike])
     stack.axis = .vertical
     stack.alignment = .center
     stack.distribution = .fill
     return stack
   }()
   
-  lazy var horizontalStack: UIStackView = {
+  lazy var horizontalStackSearch: UIStackView = {
     var stack = UIStackView(arrangedSubviews: [textFieldSearchCity, buttonSearchCity])
     stack.axis = .horizontal
     stack.spacing = 16
@@ -59,9 +84,23 @@ class HomeViewController: UIViewController {
     return stack
   }()
   
+  lazy var tableView: UITableView = {
+    var table = UITableView(frame: CGRect(), style: .plain)
+    table.separatorStyle = .none
+    table.showsVerticalScrollIndicator = false
+    table.register(HoursWeatherTableViewCell.self, forCellReuseIdentifier: "HoursWeatherTableViewCell")
+    table.register(DailyWeatherTableViewCell.self, forCellReuseIdentifier: "DailyWeatherTableViewCell")
+    table.dataSource = self
+    table.delegate = self
+    table.isHidden = true
+    table.allowsSelection = false
+    table.backgroundColor = .clear
+    return table
+  }()
+    
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = .white
+    view.backgroundColor = .orange
     addSubview()
     
     updateViewConstraints()
@@ -72,45 +111,106 @@ class HomeViewController: UIViewController {
     
     Task {
       guard let coordinate = try await networkManager.getCoordinate(nameCity).first else {return}
-      try await networkManager.getWeather(coordinate)
-      guard let icon = self.networkManager.weatherData?.current.weather[0].icon, let temp = self.networkManager.weatherData?.current.temp, let description = self.networkManager.weatherData?.current.weather[0].description else {return}
-      let imageIcon = try await networkManager.getIcon(icon.description)
       
-     
-      self.iconWeather.image = UIImage(data: imageIcon)
-      self.labelWeather.text = "\(temp) °C \n \(description)"
+      weatherData = try await networkManager.getWeather(coordinate)
+      
+      guard let temp = self.weatherData?.current.temp, let description = self.weatherData?.current.weather[0].description, let feelsLike = self.weatherData?.current.feelsLike else {return}
+      
+      self.labelWeatherNameCity.text = coordinate.name?.description
+      self.labelWeatherTemp.text = "\(temp.roundingNumber())°"
+      self.labelWeatherDescription.text = description.description
+      self.labelWeatherFeelsLike.text = "ощущается как \(feelsLike)°"
+      
+      tableView.reloadData()
+      tableView.isHidden = false
     }
   }
   
   func addSubview() {
-    view.addSubview(horizontalStack)
-    view.addSubview(verticalStack)
+    view.addSubview(verticalStackWeather)
+    view.addSubview(horizontalStackSearch)
+    view.addSubview(tableView)
   }
   
   override func updateViewConstraints() {
     super.updateViewConstraints()
-    
-    iconWeather.snp.makeConstraints { make in
-      make.height.equalTo(150)
-      make.width.equalTo(150)
-    }
-    
+
     buttonSearchCity.snp.makeConstraints { make in
       make.height.equalTo(textFieldSearchCity.snp.height)
       make.width.equalTo(textFieldSearchCity.snp.height)
     }
     
-    horizontalStack.snp.makeConstraints { make in
+    horizontalStackSearch.snp.makeConstraints { make in
       make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(16)
       make.centerX.equalToSuperview()
       make.leading.equalToSuperview().inset(16)
       make.trailing.equalToSuperview().inset(16)
     }
     
-    verticalStack.snp.makeConstraints { make in
-      make.center.equalToSuperview()
+    verticalStackWeather.snp.makeConstraints { make in
+      make.top.equalTo(horizontalStackSearch.snp.bottom).inset(-8)
+      make.centerX.equalToSuperview()
     }
     
+    tableView.snp.makeConstraints { make in
+      make.leading.equalToSuperview().inset(8)
+      make.trailing.equalToSuperview().inset(8)
+      make.bottom.equalToSuperview()
+      make.top.equalTo(verticalStackWeather.snp.bottom).inset(-16)
+      
+    }
+    
+  }
+  
+  
+}
+
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+  
+  func numberOfSections(in tableView: UITableView) -> Int { 2 }
+  
+  func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    section == 0 ? "ПОЧАСАВОЙ ПРОГНОЗ" : "ЕЖЕДНЕВНЫЙ ПРОГНОЗ"
+  }
+  
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    section == 0 ? 1 : self.weatherData?.daily.count ?? 0
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if indexPath.section == 0 {
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: "HoursWeatherTableViewCell", for: indexPath) as? HoursWeatherTableViewCell  else {
+        return UITableViewCell() }
+      
+      cell.layer.backgroundColor = UIColor.clear.cgColor
+      cell.backgroundColor = .clear
+      
+      cell.hourlyWeather = weatherData?.hourly
+      cell.collectionView.reloadData()
+      
+      return cell
+    } else {
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: "DailyWeatherTableViewCell", for: indexPath) as? DailyWeatherTableViewCell, let tempMax = weatherData?.daily[indexPath.row].temp.max, let tempMin = weatherData?.daily[indexPath.row].temp.min else {
+        return UITableViewCell() }
+      
+      
+      if let icon = weatherData?.daily[indexPath.row].weather.first?.icon {
+        Task {
+          let imageIcon = try await networkManager.getIcon(icon)
+          cell.iconWeather.image = UIImage(data: imageIcon)
+        }
+      }
+      
+      cell.labelWeatherTime.text = indexPath.row == 0 ? "Сейчас" : weatherData?.daily[indexPath.row].dt?.dateFormatter(dateFormat: .dayWeek)
+      cell.labelWeatherTempMax.text = "\(tempMax.roundingNumber())°"
+      cell.labelWeatherTempMin.text = "\(tempMin.roundingNumber())°"
+      
+      return cell
+    }
+  }
+  
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    indexPath.section == 0 ? 100 : 44
   }
   
   

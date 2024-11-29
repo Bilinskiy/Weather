@@ -23,9 +23,8 @@ enum Units {
 
 protocol NetworkManagerProtocol {
   func getCoordinate(_ nameCity: String) async throws -> [CoordinateCity]
-  func getWeather(_ coordinate: CoordinateCity) async throws
+  func getWeather(_ coordinate: CoordinateCity) async throws -> WeatherModel
   func getIcon(_ icon: String) async throws -> Data
-  var weatherData: WeatherModel? {get}
 }
 
 class NetworkManager: NetworkManagerProtocol {
@@ -34,8 +33,6 @@ class NetworkManager: NetworkManagerProtocol {
     guard let key = Bundle.main.object(forInfoDictionaryKey: "OpenWeatherKey") as? String else { fatalError("keyOpenWeather not found") }
     return key
   }()
-  
-  var weatherData: WeatherModel?
   
   let lang: Language = .ru
   let units: Units = .metric
@@ -54,7 +51,7 @@ class NetworkManager: NetworkManagerProtocol {
     return coordinate
   }
   
-  func getWeather(_ coordinate: CoordinateCity) async throws {
+  func getWeather(_ coordinate: CoordinateCity) async throws -> WeatherModel {
     guard let urlWeather = URL(string: "https://api.openweathermap.org/data/2.5/onecall?lat=\(coordinate.lat!)&lon=\(coordinate.lon!)&units=\(units)&lang=\(lang)&exclude=minutely,alerts&appid=\(keyOpenWeather)") else {fatalError()}
     
     var request =  URLRequest(url: urlWeather)
@@ -65,7 +62,7 @@ class NetworkManager: NetworkManagerProtocol {
     
     let weatherCity = try JSONDecoder().decode(WeatherModel.self, from: data)
     
-    self.weatherData = weatherCity
+    return weatherCity
   }
   
   func getIcon(_ icon: String) async throws -> Data {

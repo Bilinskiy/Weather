@@ -12,18 +12,20 @@ class TabBarController: UITabBarController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    self.tabBar.addBlur(.light)
+    tabBar.addBlur(.light)
     
     setupViewControllersTabBar()
-    
   }
   
   func setupViewControllersTabBar() {
+    UITabBar.appearance().tintColor = .myColorGray
+    UITabBar.appearance().unselectedItemTintColor = .myColorWhite
+    
     let firstVC = HomeViewController()
-    firstVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
+    firstVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
    
     let mapsVC = MapViewController()
-    mapsVC.tabBarItem = UITabBarItem(title: "Map", image: UIImage(systemName: "map"), selectedImage: UIImage(systemName: "map.fill"))
+    mapsVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "map"), selectedImage: UIImage(systemName: "map.fill"))
     
     viewControllers = [firstVC, mapsVC]
   }
