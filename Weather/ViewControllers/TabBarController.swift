@@ -27,7 +27,11 @@ class TabBarController: UITabBarController {
     let mapsVC = MapViewController()
     mapsVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "map"), selectedImage: UIImage(systemName: "map.fill"))
     
-    viewControllers = [firstVC, mapsVC]
+    let historyVC = HistoryViewController()
+    historyVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "clock"), selectedImage: UIImage(systemName: "clock.fill"))
+    
+    viewControllers = [mapsVC, firstVC, historyVC]
+    self.selectedIndex = 1
   }
   
   
