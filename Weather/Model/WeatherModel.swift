@@ -23,7 +23,7 @@ struct WeatherModel: Decodable {
 
 //MARK: - Current -
 struct Current: Decodable {
-  let dt: Int?
+  let dt: Double?
   let sunrise: Int?
   let sunset: Int?
   let temp: Float?
@@ -59,7 +59,7 @@ struct Current: Decodable {
 
 //MARK: - Hourly -
 struct Hourly: Decodable {
-  let dt: Int?
+  let dt: Double?
   let temp: Float?
   let feelsLike: Float?
   let pressure: Int?
@@ -95,7 +95,7 @@ struct Hourly: Decodable {
 
 //MARK: - Daily -
 struct Daily: Decodable {
-  let dt: Int?
+  let dt: Double?
   let sunrise: Int?
   let sunset: Int?
   let moonrise: Int?

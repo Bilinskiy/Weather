@@ -13,7 +13,8 @@ class MapViewController: UIViewController {
  
   let networkManager: NetworkManagerProtocol = ParametersNetworkRequest.manager.manager()
   var currentWeather: Current?
-  
+  var dataBase: DataBaseProtocol = DataBase()
+
   private let keyGoogleMaps: String = {
     guard let key = Bundle.main.object(forInfoDictionaryKey: "GoogleMapsKey") as? String else { fatalError("GoogleMapsKey not found") }
     return key
@@ -122,7 +123,7 @@ extension MapViewController: GMSMapViewDelegate {
     Task {      
       currentWeather = try await networkManager.getWeather(lat: Float(coordinate.latitude), lon: Float(coordinate.longitude)).current
       
-      guard let icon = self.currentWeather?.weather.first?.icon, let temp = self.currentWeather?.temp else {return}
+      guard let icon = self.currentWeather?.weather.first?.icon, let temp = self.currentWeather?.temp, let feelsLike = self.currentWeather?.feelsLike, let pressure = self.currentWeather?.pressure, let humidity = self.currentWeather?.humidity else {return}
       
       let imageIcon = try await networkManager.getIcon(icon.description)
       
@@ -137,6 +138,12 @@ extension MapViewController: GMSMapViewDelegate {
       marker.map = mapView
       
       mapView.animate(with: GMSCameraUpdate.setTarget(position))
+      
+      let weatherData = WeatherData(temp: temp.roundingNumber(), feelsLike: feelsLike, pressure: pressure, humidity: humidity)
+      let dataHistory = HistoryData(dateHistory: Date(), lat: Float(coordinate.latitude), lon: Float(coordinate.longitude), weatherData: weatherData)
+      
+      dataBase.saveData(dataHistory)
+   
     }
   }
   

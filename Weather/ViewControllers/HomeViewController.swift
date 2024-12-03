@@ -8,18 +8,25 @@
 import UIKit
 import SnapKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITextFieldDelegate {
   
   lazy var networkManager: NetworkManagerProtocol = ParametersNetworkRequest.manager.manager()
   var weatherData: WeatherModel?
+  var dataBase: DataBaseProtocol = DataBase()
   
   lazy var textFieldSearchCity: UITextField = {
     var textField = UITextField()
     textField.placeholder = "Name City"
     textField.borderStyle = .roundedRect
     textField.enablesReturnKeyAutomatically = false
+    textField.delegate = self
     return textField
   }()
+  
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+      textField.resignFirstResponder()
+      return true
+  }
   
   lazy var buttonSearchCity: UIButton = {
     var button = UIButton()
@@ -114,8 +121,8 @@ class HomeViewController: UIViewController {
         guard let coordinate = try await networkManager.getCoordinate(nameCity).first, let lat = coordinate.lat, let lon = coordinate.lon else {return}
         
         weatherData = try await networkManager.getWeather(lat: lat, lon: lon)
-        
-        guard let temp = self.weatherData?.current.temp, let description = self.weatherData?.current.weather[0].description, let feelsLike = self.weatherData?.current.feelsLike else {return}
+       
+        guard let temp = self.weatherData?.current.temp, let description = self.weatherData?.current.weather[0].description, let feelsLike = self.weatherData?.current.feelsLike, let pressure = self.weatherData?.current.pressure, let humidity = self.weatherData?.current.humidity else {return}
         
         self.labelWeatherNameCity.text = coordinate.name?.description
         self.labelWeatherTemp.text = "\(temp.roundingNumber())°"
@@ -124,6 +131,11 @@ class HomeViewController: UIViewController {
         
         tableView.reloadData()
         tableView.isHidden = false
+        
+        let weatherData = WeatherData(temp: temp.roundingNumber(), feelsLike: feelsLike, pressure: pressure, humidity: humidity)
+        let dataHistory = HistoryData(dateHistory: Date(), lat: lat, lon: lon, weatherData: weatherData)
+        dataBase.saveData(dataHistory)
+        
       } catch {
         fatalError()
       }
