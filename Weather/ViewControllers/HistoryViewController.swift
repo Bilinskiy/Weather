@@ -13,6 +13,9 @@ class HistoryViewController: UIViewController {
   var dataBase: DataBaseProtocol = DataBase()
   var dataHistory: [HistoryData] = []
   
+  let dateFormatter = DateFormatter()
+
+  
   lazy var labelTitle: UILabel = {
     var label = UILabel()
     label.numberOfLines = 2
@@ -89,7 +92,10 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath) as? HistoryTableViewCell  else {
       return UITableViewCell() }
     
-    cell.textLabel?.text = "\(dataHistory[indexPath.row].dateHistory.dateFormatter(dateFormat: .dateTime)) | \(dataHistory[indexPath.row].weatherData.temp) | \(Int(dataHistory[indexPath.row].lat)) - \(Int(dataHistory[indexPath.row].lon))"
+    dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
+    let dateStringFormate = dateFormatter.string(from: dataHistory[indexPath.row].dateHistory)
+    
+    cell.textLabel?.text = "\(dateStringFormate) | \(dataHistory[indexPath.row].weatherData.temp) | \(Int(dataHistory[indexPath.row].lat)) - \(Int(dataHistory[indexPath.row].lon))"
     
     return cell
   }

@@ -121,8 +121,8 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         guard let coordinate = try await networkManager.getCoordinate(nameCity).first, let lat = coordinate.lat, let lon = coordinate.lon else {return}
         
         weatherData = try await networkManager.getWeather(lat: lat, lon: lon)
-        
-        guard let temp = self.weatherData?.current.temp, let description = self.weatherData?.current.weather[0].description, let feelsLike = self.weatherData?.current.feelsLike, let date = self.weatherData?.current.dt, let pressure = self.weatherData?.current.pressure, let humidity = self.weatherData?.current.humidity else {return}
+       
+        guard let temp = self.weatherData?.current.temp, let description = self.weatherData?.current.weather[0].description, let feelsLike = self.weatherData?.current.feelsLike, let pressure = self.weatherData?.current.pressure, let humidity = self.weatherData?.current.humidity else {return}
         
         self.labelWeatherNameCity.text = coordinate.name?.description
         self.labelWeatherTemp.text = "\(temp.roundingNumber())°"
@@ -133,7 +133,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         tableView.isHidden = false
         
         let weatherData = WeatherData(temp: temp.roundingNumber(), feelsLike: feelsLike, pressure: pressure, humidity: humidity)
-        let dataHistory = HistoryData(dateHistory: date, lat: lat, lon: lon, weatherData: weatherData)
+        let dataHistory = HistoryData(dateHistory: Date(), lat: lat, lon: lon, weatherData: weatherData)
         dataBase.saveData(dataHistory)
         
       } catch {

@@ -1,5 +1,5 @@
 //
-//  Int+Extension.swift
+//  Double+Extension.swift
 //  Weather
 //
 //  Created by Дмитрий Билинский on 11/28/24.
@@ -13,7 +13,7 @@ enum DateFormat: String {
   case dateTime = "MM-dd-yyyy HH:mm"
 }
 
-extension Int {
+extension Double {
   func dateFormatter(dateFormat: DateFormat) -> String {
     let date = Date(timeIntervalSince1970: TimeInterval(self))
     let dateFormatter = DateFormatter()

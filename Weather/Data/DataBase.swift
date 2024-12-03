@@ -10,12 +10,12 @@ import SwiftData
 
 @Model
 final class HistoryData {
-  var dateHistory: Int
+  var dateHistory: Date
   var lat: Float
   var lon: Float
   var weatherData: WeatherData
   
-  init(dateHistory: Int, lat: Float, lon: Float, weatherData: WeatherData) {
+  init(dateHistory: Date, lat: Float, lon: Float, weatherData: WeatherData) {
     self.dateHistory = dateHistory
     self.lat = lat
     self.lon = lon
