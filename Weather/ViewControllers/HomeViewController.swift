@@ -13,6 +13,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
   lazy var networkManager: NetworkManagerProtocol = ParametersNetworkRequest.manager.manager()
   var weatherData: WeatherModel?
   var dataBase: DataBaseProtocol = DataBase()
+  var notification: NotificationProtokol = Notification()
   
   lazy var textFieldSearchCity: UITextField = {
     var textField = UITextField()
@@ -132,9 +133,12 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         tableView.reloadData()
         tableView.isHidden = false
         
-        let weatherData = WeatherData(temp: temp.roundingNumber(), feelsLike: feelsLike, pressure: pressure, humidity: humidity)
-        let dataHistory = HistoryData(dateHistory: Date(), lat: lat, lon: lon, weatherData: weatherData)
+        let weather = WeatherData(temp: temp.roundingNumber(), feelsLike: feelsLike, pressure: pressure, humidity: humidity)
+        let dataHistory = HistoryData(dateHistory: Date(), lat: lat, lon: lon, weatherData: weather)
         dataBase.saveData(dataHistory)
+        
+        guard let dataHourly = weatherData?.hourly else {return}
+        notification.notification(data: dataHourly)
         
       } catch {
         fatalError()
