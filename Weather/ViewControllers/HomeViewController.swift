@@ -49,6 +49,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
   lazy var coreManager: CLLocationManager = {
     let manager = CLLocationManager()
     manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers // точность 3 киллометра
+    manager.distanceFilter = 200
     manager.delegate = self
     return manager
   }()
