@@ -41,7 +41,7 @@ final class WeatherData {
 }
 
 protocol DataBaseProtocol {
-  func saveData(_ date: HistoryData)
+  func saveData<T>(date: T) where T: PersistentModel
   func fetchData(fetchData: @escaping (Result<[HistoryData], Error>) -> Void)
 }
 
@@ -61,8 +61,7 @@ class DataBase: DataBaseProtocol {
     }
   }
   
-  func saveData(_ date: HistoryData) {
-    
+  func saveData<T>(date: T) where T: PersistentModel {
     if let context {
       context.insert(date)
       

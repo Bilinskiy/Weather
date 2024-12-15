@@ -7,34 +7,66 @@
 
 import UIKit
 import SnapKit
+import CoreLocation
+
+enum StatusGetWeather: String { //switch для сохранения состояния при повторном входе в приложении
+  case location = "location"
+  case search = "search"
+}
+
+enum LocationButton { //switch для переключения кнопки Локации
+  case on
+  case off
+}
 
 class HomeViewController: UIViewController, UITextFieldDelegate {
   
-  lazy var networkManager: NetworkManagerProtocol = ParametersNetworkRequest.manager.manager()
-  var weatherData: WeatherModel?
-  var dataBase: DataBaseProtocol = DataBase()
-  var notification: NotificationProtokol = Notification()
+  lazy var statusGetWeather: StatusGetWeather = .location
+  var locationButton: LocationButton = .off
   
-  lazy var textFieldSearchCity: UITextField = {
-    var textField = UITextField()
-    textField.placeholder = "Name City"
-    textField.borderStyle = .roundedRect
-    textField.enablesReturnKeyAutomatically = false
-    textField.delegate = self
-    return textField
-  }()
+  lazy var networkManager: NetworkManagerProtocol = ParametersNetworkRequest.manager.manager() // в файле ParametersNetworkRequest можно менять через какйто менедж длеать запрос (URLSession or Alamofire)
   
-  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+  var weatherData: WeatherModel? // все данные о погоде
+  var dataBase: DataBaseProtocol = DataBase() // работа с swift data (локальная базаданных)
+  var notification: NotificationProtocol = Notification() // работа с локальными уведомлениями (уведомляют о плохой погоде)
+  
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool { // для скрытия клавиатурры при заполнении textfield
       textField.resignFirstResponder()
       return true
   }
   
+  lazy var labelInfo: UILabel = {
+    var label = UILabel()
+    label.text = "Нет данных"
+    label.layer.opacity = 0.5
+    label.textAlignment = .center
+    label.font = label.font.withSize(35)
+    label.textColor = .black
+    label.isHidden = false
+    return label
+  }()
+  
+  lazy var coreManager: CLLocationManager = {
+    let manager = CLLocationManager()
+    manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers // точность 3 киллометра
+    manager.distanceFilter = 200
+    manager.delegate = self
+    return manager
+  }()
+  
   lazy var buttonSearchCity: UIButton = {
-    var button = UIButton()
-    button.backgroundColor = .systemFill
-    button.layer.cornerRadius = 5
+    var button = UIButton(type: .contactAdd)
     button.setImage(UIImage(systemName: "magnifyingglass.circle"), for: .normal)
     button.addTarget(self, action: #selector(tapButtonSearchCity), for: .touchUpInside)
+    button.tintColor = .black
+    return button
+  }()
+  
+  lazy var buttonLocation: UIButton = {
+    var button = UIButton(type: .contactAdd)
+    button.setImage(UIImage(systemName: "location.circle"), for: .normal)
+    button.addTarget(self, action: #selector(tapButtonLocation), for: .touchUpInside)
+    button.tintColor = .black
     return button
   }()
   
@@ -84,11 +116,11 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
   }()
   
   lazy var horizontalStackSearch: UIStackView = {
-    var stack = UIStackView(arrangedSubviews: [textFieldSearchCity, buttonSearchCity])
+    var stack = UIStackView(arrangedSubviews: [buttonSearchCity, buttonLocation])
     stack.axis = .horizontal
     stack.spacing = 16
     stack.alignment = .center
-    stack.distribution = .fill
+    stack.distribution = .equalSpacing
     return stack
   }()
   
@@ -105,25 +137,100 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     table.backgroundColor = .clear
     return table
   }()
-    
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .orange
-    addSubview()
+    coreManager.requestWhenInUseAuthorization() // запрос на разрешение получения или НЕ получения геолокации
+   
+    if let name = UserDefaults.standard.string(forKey: "getWeather") { // загрузка сохраненного состояния приложения, получение погоды через геолокацию или последний запрос по названию города
+      statusGetWeather = .search
+      taskWeatherData(name)
+    } else {
+      if UserDefaults.standard.object(forKey: "getLocation") != nil { locationButton = UserDefaults.standard.bool(forKey: "getLocation") ? .off : .on }
+      statusGetWeather = .location
+      statusGet()
+    }
     
+    addSubview()
     updateViewConstraints()
   }
   
-  @objc func tapButtonSearchCity() {
-    guard let nameCity = textFieldSearchCity.text, !nameCity.isEmpty else {return}
+  func alertSearchCity() {
+    let alert = UIAlertController(title: "Поиск", message: "Введите название города", preferredStyle: .alert)
+    alert.addTextField()
+    alert.textFields?.first?.placeholder = "Названгие города"
     
+    let ok = UIAlertAction(title: "Ok", style: .cancel) { _ in
+      guard let nameCity = alert.textFields?.first?.text else {return}
+      
+      self.statusGetWeather = .search
+      self.taskWeatherData(nameCity)
+    }
+    
+    let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+    
+    alert.addAction(ok)
+    alert.addAction(cancel)
+    
+    present(alert, animated: true)
+  } // alert для ввода названия города и вывода погоды
+  
+  func alertSearchCityError() { 
+    let alert = UIAlertController(title: "Ошибка", message: "Введены некорректные данные", preferredStyle: .alert)
+
+    let ok = UIAlertAction(title: "Ok", style: .cancel)
+    
+    alert.addAction(ok)
+    present(alert, animated: true)
+  } // alert ошибки при вводе неверного названия города
+  
+  @objc func tapButtonLocation() {
+    statusGetWeather = .location
+    statusGet()
+  }
+  
+  func statusGet() {
+    switch statusGetWeather {
+    case .location:
+      switch locationButton {
+      case .on:
+        coreManager.stopUpdatingLocation()
+        buttonLocation.setImage(UIImage(systemName: "location.circle"), for: .normal)
+        locationButton = .off
+        verticalStackWeather.isHidden = true // скрывает данные о погоде с экрана
+        tableView.isHidden = true
+        labelInfo.isHidden = false
+        UserDefaults.standard.set(false, forKey: "getLocation")
+      case .off:
+        coreManager.startUpdatingLocation()
+        buttonLocation.setImage(UIImage(systemName: "location.circle.fill"), for: .normal)
+        buttonSearchCity.setImage(UIImage(systemName: "magnifyingglass.circle"), for: .normal)
+        locationButton = .on
+        UserDefaults.standard.set(true, forKey: "getLocation")
+      } // состояние кнопки локации в зависимости нажата она или нет
+    case .search:
+      coreManager.stopUpdatingLocation()
+      buttonSearchCity.setImage(UIImage(systemName: "magnifyingglass.circle.fill"), for: .normal)
+      buttonLocation.setImage(UIImage(systemName: "location.circle"), for: .normal)
+      locationButton = .off
+      UserDefaults.standard.set(false, forKey: "getLocation")
+    }
+  } // функция для контроля состояния кнопок Локации и Поиска оп нозванию
+  
+  @objc func tapButtonSearchCity() { alertSearchCity() }
+  
+  func taskWeatherData(_ nameCity: String) {
     Task {
       do {
-        guard let coordinate = try await networkManager.getCoordinate(nameCity).first, let lat = coordinate.lat, let lon = coordinate.lon else {return}
-        
-        weatherData = try await networkManager.getWeather(lat: lat, lon: lon)
+        let date = try await networkManager.getCoordinate(nameCity)
+        guard !date.isEmpty, let coordinate = date.first, let lat = coordinate.lat, let lon = coordinate.lon else {
+          self.alertSearchCityError()
+          return} // проверка данных которые приходят по введенному названию города, если данные отсутствуют или не корректны - срабатывает alert ошибка или catch
+
+        weatherData = try await networkManager.getWeather(lat: lat, lon: lon) // получение всех данных о погоде
        
-        guard let temp = self.weatherData?.current.temp, let description = self.weatherData?.current.weather[0].description, let feelsLike = self.weatherData?.current.feelsLike, let pressure = self.weatherData?.current.pressure, let humidity = self.weatherData?.current.humidity else {return}
+        guard let temp = self.weatherData?.current.temp, let description = self.weatherData?.current.weather.first?.description, let feelsLike = self.weatherData?.current.feelsLike, let pressure = self.weatherData?.current.pressure, let humidity = self.weatherData?.current.humidity else {return}
         
         self.labelWeatherNameCity.text = coordinate.name?.description
         self.labelWeatherTemp.text = "\(temp.roundingNumber())°"
@@ -131,33 +238,41 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         self.labelWeatherFeelsLike.text = "ощущается как \(feelsLike)°"
         
         tableView.reloadData()
+        verticalStackWeather.isHidden = false
+        labelInfo.isHidden = true
         tableView.isHidden = false
         
         let weather = WeatherData(temp: temp.roundingNumber(), feelsLike: feelsLike, pressure: pressure, humidity: humidity)
         let dataHistory = HistoryData(dateHistory: Date(), lat: lat, lon: lon, weatherData: weather)
-        dataBase.saveData(dataHistory)
+        dataBase.saveData(date: dataHistory) // сохраняем данные запроса в базу данных Swift Data
         
         guard let dataHourly = weatherData?.hourly else {return}
         notification.notification(data: dataHourly)
         
+        if statusGetWeather == .search {
+          statusGet()
+          UserDefaults.standard.set(nameCity, forKey: "getWeather")
+        } // если запрос делается через поиск города то сохраняем название города в UserDefaults что бы загрузить его при повторном запуске приложения
+
       } catch {
-        fatalError()
+        self.alertSearchCityError()
+        self.statusGetWeather = .location
       }
     }
-  }
+  } // сетевой запрос данных в Task
   
   func addSubview() {
+    view.addSubview(labelInfo)
     view.addSubview(verticalStackWeather)
     view.addSubview(horizontalStackSearch)
     view.addSubview(tableView)
-  }
+  } // добавление всех View
   
   override func updateViewConstraints() {
     super.updateViewConstraints()
-
-    buttonSearchCity.snp.makeConstraints { make in
-      make.height.equalTo(textFieldSearchCity.snp.height)
-      make.width.equalTo(textFieldSearchCity.snp.height)
+    
+    labelInfo.snp.makeConstraints { make in
+      make.center.equalToSuperview()
     }
     
     horizontalStackSearch.snp.makeConstraints { make in
@@ -181,7 +296,6 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     }
     
   }
-  
   
 }
 
@@ -234,5 +348,36 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   
+}
+
+extension HomeViewController: CLLocationManagerDelegate {
+  
+  func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+    if manager.authorizationStatus == .authorizedAlways || manager.authorizationStatus == .authorizedWhenInUse {
+      buttonLocation.isEnabled = true
+    } else {
+      buttonLocation.isEnabled = false
+      verticalStackWeather.isHidden = true
+      labelInfo.isHidden = false
+      tableView.isHidden = true
+    }
+  }
+  
+  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    guard let coordinate = locations.first else {return}
+
+    CLGeocoder().reverseGeocodeLocation(coordinate, completionHandler: { response, error in
+      if (error != nil) {
+        fatalError()
+      } else {
+        guard let address = response?.first?.locality else {return}
+        UserDefaults.standard.set(nil, forKey: "getWeather")
+        UserDefaults.standard.set(true, forKey: "getLocation")
+        self.taskWeatherData(address)
+      }
+    })
+    
+ 
+  }
 }
 

@@ -142,7 +142,7 @@ extension MapViewController: GMSMapViewDelegate {
       let weatherData = WeatherData(temp: temp.roundingNumber(), feelsLike: feelsLike, pressure: pressure, humidity: humidity)
       let dataHistory = HistoryData(dateHistory: Date(), lat: Float(coordinate.latitude), lon: Float(coordinate.longitude), weatherData: weatherData)
       
-      dataBase.saveData(dataHistory)
+      dataBase.saveData(date: dataHistory)
    
     }
   }
