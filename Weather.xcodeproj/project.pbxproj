@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D0382C5C2CE3392C00FD2D64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382C522CE3392C00FD2D64 /* AppDelegate.swift */; };
-		D0382C5D2CE3392C00FD2D64 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382C572CE3392C00FD2D64 /* NetworkManager.swift */; };
 		D0382C5E2CE3392C00FD2D64 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382C582CE3392C00FD2D64 /* SceneDelegate.swift */; };
 		D0382C5F2CE3392C00FD2D64 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382C592CE3392C00FD2D64 /* HomeViewController.swift */; };
 		D0382C602CE3392C00FD2D64 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382C5A2CE3392C00FD2D64 /* WeatherModel.swift */; };
@@ -18,8 +17,6 @@
 		D0382CBE2CEC84BE00FD2D64 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382CBD2CEC84BE00FD2D64 /* TabBarController.swift */; };
 		D0382CCE2CEC9C4F00FD2D64 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0382CCD2CEC9C4F00FD2D64 /* UIView+Extension.swift */; };
 		D046F9DD2CF9D2A2003B8F2B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D046F9DC2CF9D2A2003B8F2B /* Alamofire */; };
-		D046F9DF2CF9D2D2003B8F2B /* AlamofireNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D046F9DE2CF9D2D2003B8F2B /* AlamofireNetworkManager.swift */; };
-		D046F9E12CF9E1F9003B8F2B /* ParametersNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D046F9E02CF9E1F9003B8F2B /* ParametersNetworkRequest.swift */; };
 		D05CB51C2CF51B9C00E684E5 /* HoursWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CB51B2CF51B9C00E684E5 /* HoursWeatherTableViewCell.swift */; };
 		D05CB52E2CF5BDE300E684E5 /* DailyWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CB52D2CF5BDE300E684E5 /* DailyWeatherTableViewCell.swift */; };
 		D05CB5302CF5BE6E00E684E5 /* HoursWeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CB52F2CF5BE6E00E684E5 /* HoursWeatherCollectionViewCell.swift */; };
@@ -27,6 +24,9 @@
 		D05CB5342CF8886F00E684E5 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CB5332CF8886F00E684E5 /* Double+Extension.swift */; };
 		D05CB5372CF8931A00E684E5 /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = D05CB5362CF8931A00E684E5 /* GoogleMaps */; };
 		D05CB53A2CF8932300E684E5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D05CB5392CF8932300E684E5 /* SnapKit */; };
+		D08EFDF32D0C48300013CFF3 /* ParametersNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08EFDF12D0C48300013CFF3 /* ParametersNetworkRequest.swift */; };
+		D08EFDF42D0C48300013CFF3 /* AlamofireNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08EFDEF2D0C48300013CFF3 /* AlamofireNetworkManager.swift */; };
+		D08EFDF52D0C48300013CFF3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08EFDF02D0C48300013CFF3 /* NetworkManager.swift */; };
 		D0B761D12CFF4ED70041D21F /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B761D02CFF4ED70041D21F /* Notification.swift */; };
 		D0E55BBF2CFDC24E00001016 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E55BBE2CFDC24E00001016 /* HistoryViewController.swift */; };
 		D0E55BC12CFDC28A00001016 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E55BC02CFDC28A00001016 /* HistoryTableViewCell.swift */; };
@@ -39,20 +39,20 @@
 		D0382C532CE3392C00FD2D64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0382C542CE3392C00FD2D64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0382C552CE3392C00FD2D64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D0382C572CE3392C00FD2D64 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D0382C582CE3392C00FD2D64 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D0382C592CE3392C00FD2D64 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D0382C5A2CE3392C00FD2D64 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		D0382CA82CEC786600FD2D64 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D0382CBD2CEC84BE00FD2D64 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D0382CCD2CEC9C4F00FD2D64 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		D046F9DE2CF9D2D2003B8F2B /* AlamofireNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkManager.swift; sourceTree = "<group>"; };
-		D046F9E02CF9E1F9003B8F2B /* ParametersNetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersNetworkRequest.swift; sourceTree = "<group>"; };
 		D05CB51B2CF51B9C00E684E5 /* HoursWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursWeatherTableViewCell.swift; sourceTree = "<group>"; };
 		D05CB52D2CF5BDE300E684E5 /* DailyWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherTableViewCell.swift; sourceTree = "<group>"; };
 		D05CB52F2CF5BE6E00E684E5 /* HoursWeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursWeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 		D05CB5312CF8691400E684E5 /* Float+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Extension.swift"; sourceTree = "<group>"; };
 		D05CB5332CF8886F00E684E5 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
+		D08EFDEF2D0C48300013CFF3 /* AlamofireNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkManager.swift; sourceTree = "<group>"; };
+		D08EFDF02D0C48300013CFF3 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D08EFDF12D0C48300013CFF3 /* ParametersNetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersNetworkRequest.swift; sourceTree = "<group>"; };
 		D0B761D02CFF4ED70041D21F /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		D0E55BBE2CFDC24E00001016 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		D0E55BC02CFDC28A00001016 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 				D0E55BC22CFDC6FD00001016 /* Data */,
 				D0B761CF2CFF4EB10041D21F /* Notification */,
 				D0382CD22CED0ADE00FD2D64 /* Model */,
-				D0382CD32CED0AE500FD2D64 /* Manager */,
+				D08EFDF22D0C48300013CFF3 /* Manager */,
 				D05CB51D2CF51BCF00E684E5 /* ViewCell */,
 				D0382CCF2CED0A7600FD2D64 /* ViewControllers */,
 			);
@@ -145,16 +145,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		D0382CD32CED0AE500FD2D64 /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				D0382C572CE3392C00FD2D64 /* NetworkManager.swift */,
-				D046F9DE2CF9D2D2003B8F2B /* AlamofireNetworkManager.swift */,
-				D046F9E02CF9E1F9003B8F2B /* ParametersNetworkRequest.swift */,
-			);
-			path = Manager;
-			sourceTree = "<group>";
-		};
 		D05CB51D2CF51BCF00E684E5 /* ViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +154,16 @@
 				D0E55BC02CFDC28A00001016 /* HistoryTableViewCell.swift */,
 			);
 			path = ViewCell;
+			sourceTree = "<group>";
+		};
+		D08EFDF22D0C48300013CFF3 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				D08EFDEF2D0C48300013CFF3 /* AlamofireNetworkManager.swift */,
+				D08EFDF02D0C48300013CFF3 /* NetworkManager.swift */,
+				D08EFDF12D0C48300013CFF3 /* ParametersNetworkRequest.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		D0B761CF2CFF4EB10041D21F /* Notification */ = {
@@ -268,16 +268,16 @@
 				D05CB5302CF5BE6E00E684E5 /* HoursWeatherCollectionViewCell.swift in Sources */,
 				D0382CCE2CEC9C4F00FD2D64 /* UIView+Extension.swift in Sources */,
 				D0E55BC62CFDC80F00001016 /* DataBase.swift in Sources */,
-				D0382C5D2CE3392C00FD2D64 /* NetworkManager.swift in Sources */,
 				D0382C5E2CE3392C00FD2D64 /* SceneDelegate.swift in Sources */,
 				D0382C5F2CE3392C00FD2D64 /* HomeViewController.swift in Sources */,
 				D0E55BBF2CFDC24E00001016 /* HistoryViewController.swift in Sources */,
-				D046F9DF2CF9D2D2003B8F2B /* AlamofireNetworkManager.swift in Sources */,
 				D0E55BC12CFDC28A00001016 /* HistoryTableViewCell.swift in Sources */,
 				D05CB52E2CF5BDE300E684E5 /* DailyWeatherTableViewCell.swift in Sources */,
 				D0B761D12CFF4ED70041D21F /* Notification.swift in Sources */,
+				D08EFDF32D0C48300013CFF3 /* ParametersNetworkRequest.swift in Sources */,
+				D08EFDF42D0C48300013CFF3 /* AlamofireNetworkManager.swift in Sources */,
+				D08EFDF52D0C48300013CFF3 /* NetworkManager.swift in Sources */,
 				D05CB5342CF8886F00E684E5 /* Double+Extension.swift in Sources */,
-				D046F9E12CF9E1F9003B8F2B /* ParametersNetworkRequest.swift in Sources */,
 				D0382C602CE3392C00FD2D64 /* WeatherModel.swift in Sources */,
 				D05CB51C2CF51B9C00E684E5 /* HoursWeatherTableViewCell.swift in Sources */,
 				D05CB5322CF8691400E684E5 /* Float+Extension.swift in Sources */,
@@ -309,6 +309,7 @@
 				DEVELOPMENT_TEAM = B9RY2H98ND;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Weather/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For detection geo positioning";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -336,6 +337,7 @@
 				DEVELOPMENT_TEAM = B9RY2H98ND;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Weather/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For detection geo positioning";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

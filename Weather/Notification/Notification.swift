@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-protocol NotificationProtokol {
+protocol NotificationProtocol {
   func notification(data: [Hourly])
 }
 
-class Notification: NotificationProtokol {
+class Notification: NotificationProtocol {
   let notificationCenter = UNUserNotificationCenter.current()
 
   func addNotification(data: Hourly) {
@@ -46,7 +46,7 @@ class Notification: NotificationProtokol {
   }
     
     func notification(data: [Hourly]) {
-      notificationCenter.removeAllDeliveredNotifications()
+      notificationCenter.removeAllPendingNotificationRequests()
       
       let filter200 = data.filter({(200..<300).contains($0.weather.first?.id ?? 0)})
       let filter500 = data.filter({(500..<600).contains($0.weather.first?.id ?? 0)})

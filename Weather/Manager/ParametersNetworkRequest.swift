@@ -44,15 +44,15 @@ enum ManagerNetwork {
 
 struct ParametersNetworkRequest {
   
-  static var manager: ManagerNetwork = .urlSession
+  static var manager: ManagerNetwork = .urlSession // выбор сетевого модуля для запросов 
   
   static let keyOpenWeather: String = {
-    guard let key = Bundle.main.object(forInfoDictionaryKey: "OpenWeatherKey") as? String else { fatalError("keyOpenWeather not found") }
+    guard let key = Bundle.main.object(forInfoDictionaryKey: "OpenWeatherKey") as? String else { fatalError("keyOpenWeather not found") } // ключ для OpenWeather зашит в infoplist
     return key
   }()
   
-  static let lang: Language = .ru
-  static let units: Units = .metric
+  static let lang: Language = .ru // язык полученных данных
+  static let units: Units = .metric // система измерений
   
   static var baseURL: String = "https://api.openweathermap.org"
   
