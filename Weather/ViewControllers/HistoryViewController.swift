@@ -28,7 +28,7 @@ class HistoryViewController: UIViewController {
 
   lazy var tableView: UITableView = {
     var table = UITableView(frame: CGRect(), style: .insetGrouped)
-  
+    table.rowHeight = 60
     table.showsVerticalScrollIndicator = false
     table.register(HistoryTableViewCell.self, forCellReuseIdentifier: "HistoryTableViewCell")
     table.dataSource = self
@@ -92,10 +92,12 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath) as? HistoryTableViewCell  else {
       return UITableViewCell() }
     
-    dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
+    dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
     let dateStringFormate = dateFormatter.string(from: dataHistory[indexPath.row].dateHistory)
     
-    cell.textLabel?.text = "\(dateStringFormate) | \(dataHistory[indexPath.row].weatherData.temp) | \(Int(dataHistory[indexPath.row].lat)) - \(Int(dataHistory[indexPath.row].lon))"
+    cell.labelHistory.text = "\(dateStringFormate) | \(dataHistory[indexPath.row].weatherData.temp)°"
+    cell.labelHistoryCoord.text = "lat: \(dataHistory[indexPath.row].lat) lon: \(dataHistory[indexPath.row].lon)"
+    cell.iconMap.isHidden = !dataHistory[indexPath.row].searchMap
     
     return cell
   }

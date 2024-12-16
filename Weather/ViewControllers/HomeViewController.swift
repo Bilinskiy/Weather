@@ -239,7 +239,7 @@ class HomeViewController: UIViewController {
         tableView.isHidden = false
         
         let weather = WeatherData(temp: temp.roundingNumber(), feelsLike: feelsLike, pressure: pressure, humidity: humidity)
-        let dataHistory = HistoryData(dateHistory: Date(), lat: lat, lon: lon, weatherData: weather)
+        let dataHistory = HistoryData(dateHistory: Date(), lat: lat, lon: lon, weatherData: weather, searchMap: false)
         dataBase.saveData(date: dataHistory) // сохраняем данные запроса в базу данных Swift Data
         
         guard let dataHourly = weatherData?.hourly else {return}
