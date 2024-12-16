@@ -16,7 +16,8 @@ class Notification: NotificationProtocol {
   let notificationCenter = UNUserNotificationCenter.current()
 
   func addNotification(data: Hourly) {
-    notificationCenter.requestAuthorization(options: [.alert, .sound]) { isAuthorized, error in
+    notificationCenter.requestAuthorization(options: [.alert, .sound]) { [weak self] isAuthorized, error in
+      guard let self = self else {return}
       if isAuthorized {
         
         let content = UNMutableNotificationContent()

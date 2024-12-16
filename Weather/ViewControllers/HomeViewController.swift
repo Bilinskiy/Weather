@@ -157,8 +157,8 @@ class HomeViewController: UIViewController {
     alert.textFields?.first?.delegate = self
     alert.textFields?.first?.placeholder = "HomeViewController.alertSearchCityPlaceholder".localizationString()
     
-    let ok = UIAlertAction(title: "OK", style: .cancel) { _ in
-      guard let nameCity = alert.textFields?.first?.text else {return}
+    let ok = UIAlertAction(title: "OK", style: .cancel) { [weak self] _ in
+      guard let nameCity = alert.textFields?.first?.text, let self = self else {return}
       
       self.statusGetWeather = .search
       self.taskWeatherData(nameCity)
@@ -368,11 +368,11 @@ extension HomeViewController: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     guard let coordinate = locations.first else {return}
 
-    CLGeocoder().reverseGeocodeLocation(coordinate, completionHandler: { response, error in
+    CLGeocoder().reverseGeocodeLocation(coordinate, completionHandler: { [weak self] response, error in
       if (error != nil) {
         fatalError()
       } else {
-        guard let address = response?.first?.locality else {return}
+        guard let address = response?.first?.locality, let self = self else {return}
         UserDefaults.standard.set(nil, forKey: "getWeather")
         UserDefaults.standard.set(true, forKey: "getLocation")
         self.taskWeatherData(address)

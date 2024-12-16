@@ -40,7 +40,8 @@ class HistoryViewController: UIViewController {
   
   
   override func viewWillAppear(_ animated: Bool) {
-    dataBase.fetchData(fetchData: { result in
+    dataBase.fetchData(fetchData: { [weak self] result in
+      guard let self = self else {return}
       switch result {
       case .success(let data):
         self.dataHistory = data
