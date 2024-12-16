@@ -140,7 +140,7 @@ extension MapViewController: GMSMapViewDelegate {
       mapView.animate(with: GMSCameraUpdate.setTarget(position))
       
       let weatherData = WeatherData(temp: temp.roundingNumber(), feelsLike: feelsLike, pressure: pressure, humidity: humidity)
-      let dataHistory = HistoryData(dateHistory: Date(), lat: Float(coordinate.latitude), lon: Float(coordinate.longitude), weatherData: weatherData)
+      let dataHistory = HistoryData(dateHistory: Date(), lat: Float(coordinate.latitude), lon: Float(coordinate.longitude), weatherData: weatherData, searchMap: true)
       
       dataBase.saveData(date: dataHistory)
    

@@ -12,7 +12,16 @@ struct CoordinateCity: Decodable {
   let lat: Float?
   let lon: Float?
   let name: String?
+  let localNames: [String: String]?
+  
+  enum CodingKeys: String, CodingKey {
+    case lat
+    case lon
+    case name
+    case localNames = "local_names"
+  }
 }
+
 
 //MARK: - WeatherModel -
 struct WeatherModel: Decodable {

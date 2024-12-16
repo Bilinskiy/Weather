@@ -10,7 +10,7 @@ import Foundation
 enum DateFormat: String {
   case dayWeek = "E"
   case hour = "HH"
-  case dateTime = "MM-dd-yyyy HH:mm"
+  case dateTime = "dd-MM-yyyy HH:mm"
 }
 
 extension Double {

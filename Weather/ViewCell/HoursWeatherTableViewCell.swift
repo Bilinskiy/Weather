@@ -69,7 +69,7 @@ extension HoursWeatherTableViewCell: UICollectionViewDelegate, UICollectionViewD
       }
     }
     
-    cell.labelWeatherTime.text = indexPath.row == 0 ? "Сейчас" : self.hourlyWeather?[indexPath.row].dt?.dateFormatter(dateFormat: .hour)
+    cell.labelWeatherTime.text = indexPath.row == 0 ? "HoursWeatherTableViewCell.labelWeatherTime".localizationString() : self.hourlyWeather?[indexPath.row].dt?.dateFormatter(dateFormat: .hour)
     cell.labelWeatherTemp.text = "\(temp.roundingNumber())°"
     
     return cell

@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  Weather
+
+  Created by Дмитрий Билинский on 12/16/24.
+  
+*/
+
+"HoursWeatherTableViewCell.labelWeatherTime" = "Now";
+"HomeViewController.labelInfo" = "No data";
+"HomeViewController.labelWeatherFeelsLike" = "feels like: %.2f°";
+"HistoryViewController.labelTitle" = "History requests";
+"HistoryViewController.labelHistoryCoord" = "lat: %f lon: %f";
+"HomeViewController.titleForHeaderInSectionOne" = "HOURLY FORECAST";
+"HomeViewController.titleForHeaderInSectionTwo" = "DAILY FORECAST";
+"HomeViewController.alertSearchCityTitle" = "Search";
+"HomeViewController.alertSearchCityMessage" = "Enter the city name";
+"HomeViewController.alertSearchCityPlaceholder" = "City name";
+"HomeViewController.alertSearchCityCancel" = "Cancel";
+"HomeViewController.alertSearchCityErrorTitle" = "Error";
+"HomeViewController.alertSearchCityErrorMessage" = "Incorrect data entered";
+
+

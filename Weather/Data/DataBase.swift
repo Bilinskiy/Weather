@@ -14,12 +14,14 @@ final class HistoryData {
   var lat: Float
   var lon: Float
   var weatherData: WeatherData
+  var searchMap: Bool
   
-  init(dateHistory: Date, lat: Float, lon: Float, weatherData: WeatherData) {
+  init(dateHistory: Date, lat: Float, lon: Float, weatherData: WeatherData, searchMap: Bool) {
     self.dateHistory = dateHistory
     self.lat = lat
     self.lon = lon
     self.weatherData = weatherData
+    self.searchMap = searchMap
   }
 }
 
