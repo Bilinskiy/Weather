@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  Weather
+
+  Created by Дмитрий Билинский on 12/16/24.
+  
+*/
+
+"NSLocationWhenInUseUsageDescription" = "For detection geo positioning";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "For detection geo positioning";
+"NSLocationAlwaysUsageDescription" = "For detection geo positioning";

@@ -27,6 +27,9 @@
 		D08EFDF32D0C48300013CFF3 /* ParametersNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08EFDF12D0C48300013CFF3 /* ParametersNetworkRequest.swift */; };
 		D08EFDF42D0C48300013CFF3 /* AlamofireNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08EFDEF2D0C48300013CFF3 /* AlamofireNetworkManager.swift */; };
 		D08EFDF52D0C48300013CFF3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08EFDF02D0C48300013CFF3 /* NetworkManager.swift */; };
+		D08EFE592D1060C80013CFF3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D08EFE572D1060C80013CFF3 /* Localizable.strings */; };
+		D08EFE6E2D106C030013CFF3 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08EFE6D2D106C030013CFF3 /* String+Extension.swift */; };
+		D08EFE852D10A9E40013CFF3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D08EFE832D10A9E40013CFF3 /* InfoPlist.strings */; };
 		D0B761D12CFF4ED70041D21F /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B761D02CFF4ED70041D21F /* Notification.swift */; };
 		D0E55BBF2CFDC24E00001016 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E55BBE2CFDC24E00001016 /* HistoryViewController.swift */; };
 		D0E55BC12CFDC28A00001016 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E55BC02CFDC28A00001016 /* HistoryTableViewCell.swift */; };
@@ -53,6 +56,12 @@
 		D08EFDEF2D0C48300013CFF3 /* AlamofireNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkManager.swift; sourceTree = "<group>"; };
 		D08EFDF02D0C48300013CFF3 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D08EFDF12D0C48300013CFF3 /* ParametersNetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersNetworkRequest.swift; sourceTree = "<group>"; };
+		D08EFE562D1060A50013CFF3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		D08EFE582D1060C80013CFF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D08EFE6D2D106C030013CFF3 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		D08EFE822D10A8480013CFF3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D08EFE842D10A9E40013CFF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D08EFE862D10A9F70013CFF3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D0B761D02CFF4ED70041D21F /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		D0E55BBE2CFDC24E00001016 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		D0E55BC02CFDC28A00001016 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -122,6 +131,7 @@
 				D05CB5312CF8691400E684E5 /* Float+Extension.swift */,
 				D05CB5332CF8886F00E684E5 /* Double+Extension.swift */,
 				D0382CCD2CEC9C4F00FD2D64 /* UIView+Extension.swift */,
+				D08EFE6D2D106C030013CFF3 /* String+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -133,6 +143,8 @@
 				D0382C582CE3392C00FD2D64 /* SceneDelegate.swift */,
 				D0382C532CE3392C00FD2D64 /* Assets.xcassets */,
 				D0382C562CE3392C00FD2D64 /* LaunchScreen.storyboard */,
+				D08EFE572D1060C80013CFF3 /* Localizable.strings */,
+				D08EFE832D10A9E40013CFF3 /* InfoPlist.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -228,6 +240,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = D0382C092CE1F67400FD2D64;
 			minimizedProjectReferenceProxies = 1;
@@ -252,6 +265,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0382C612CE3392C00FD2D64 /* Assets.xcassets in Resources */,
+				D08EFE852D10A9E40013CFF3 /* InfoPlist.strings in Resources */,
+				D08EFE592D1060C80013CFF3 /* Localizable.strings in Resources */,
 				D0382C632CE3392C00FD2D64 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -271,6 +286,7 @@
 				D0382C5E2CE3392C00FD2D64 /* SceneDelegate.swift in Sources */,
 				D0382C5F2CE3392C00FD2D64 /* HomeViewController.swift in Sources */,
 				D0E55BBF2CFDC24E00001016 /* HistoryViewController.swift in Sources */,
+				D08EFE6E2D106C030013CFF3 /* String+Extension.swift in Sources */,
 				D0E55BC12CFDC28A00001016 /* HistoryTableViewCell.swift in Sources */,
 				D05CB52E2CF5BDE300E684E5 /* DailyWeatherTableViewCell.swift in Sources */,
 				D0B761D12CFF4ED70041D21F /* Notification.swift in Sources */,
@@ -292,8 +308,27 @@
 			isa = PBXVariantGroup;
 			children = (
 				D0382C552CE3392C00FD2D64 /* Base */,
+				D08EFE562D1060A50013CFF3 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D08EFE572D1060C80013CFF3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D08EFE582D1060C80013CFF3 /* en */,
+				D08EFE822D10A8480013CFF3 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		D08EFE832D10A9E40013CFF3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D08EFE842D10A9E40013CFF3 /* en */,
+				D08EFE862D10A9F70013CFF3 /* ru */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -309,6 +344,8 @@
 				DEVELOPMENT_TEAM = B9RY2H98ND;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Weather/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "For detection geo positioning";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "For detection geo positioning";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For detection geo positioning";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -337,6 +374,8 @@
 				DEVELOPMENT_TEAM = B9RY2H98ND;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Weather/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "For detection geo positioning";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "For detection geo positioning";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For detection geo positioning";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -360,6 +399,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -423,6 +463,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

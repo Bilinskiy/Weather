@@ -32,7 +32,7 @@ class HomeViewController: UIViewController {
   
   lazy var labelInfo: UILabel = {
     var label = UILabel()
-    label.text = "Нет данных"
+    label.text = "HomeViewController.labelInfo".localizationString()
     label.layer.opacity = 0.5
     label.textAlignment = .center
     label.font = label.font.withSize(35)
@@ -152,19 +152,19 @@ class HomeViewController: UIViewController {
   }
   
   func alertSearchCity() {
-    let alert = UIAlertController(title: "Поиск", message: "Введите название города", preferredStyle: .alert)
+    let alert = UIAlertController(title: "HomeViewController.alertSearchCityTitle".localizationString(), message: "HomeViewController.alertSearchCityMessage".localizationString(), preferredStyle: .alert)
     alert.addTextField()
     alert.textFields?.first?.delegate = self
-    alert.textFields?.first?.placeholder = "Названгие города"
+    alert.textFields?.first?.placeholder = "HomeViewController.alertSearchCityPlaceholder".localizationString()
     
-    let ok = UIAlertAction(title: "Ok", style: .cancel) { _ in
+    let ok = UIAlertAction(title: "OK", style: .cancel) { _ in
       guard let nameCity = alert.textFields?.first?.text else {return}
       
       self.statusGetWeather = .search
       self.taskWeatherData(nameCity)
     }
     
-    let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+    let cancel = UIAlertAction(title: "HomeViewController.alertSearchCityCancel".localizationString(), style: .destructive)
     
     alert.addAction(ok)
     alert.addAction(cancel)
@@ -173,9 +173,9 @@ class HomeViewController: UIViewController {
   } // alert для ввода названия города и вывода погоды
   
   func alertSearchCityError() { 
-    let alert = UIAlertController(title: "Ошибка", message: "Введены некорректные данные", preferredStyle: .alert)
+    let alert = UIAlertController(title: "HomeViewController.alertSearchCityErrorTitle".localizationString(), message: "HomeViewController.alertSearchCityErrorMessage".localizationString(), preferredStyle: .alert)
 
-    let ok = UIAlertAction(title: "Ok", style: .cancel)
+    let ok = UIAlertAction(title: "OK", style: .cancel)
     
     alert.addAction(ok)
     present(alert, animated: true)
@@ -227,11 +227,17 @@ class HomeViewController: UIViewController {
         weatherData = try await networkManager.getWeather(lat: lat, lon: lon) // получение всех данных о погоде
        
         guard let temp = self.weatherData?.current.temp, let description = self.weatherData?.current.weather.first?.description, let feelsLike = self.weatherData?.current.feelsLike, let pressure = self.weatherData?.current.pressure, let humidity = self.weatherData?.current.humidity else {return}
-        
-        self.labelWeatherNameCity.text = coordinate.name?.description
+       
+        if let localizationName = coordinate.localNames {
+          self.labelWeatherNameCity.text = localizationName[ParametersNetworkRequest.lang.description]
+        } else {
+          self.labelWeatherNameCity.text = coordinate.name?.description
+        } // проверяем получает ли API локализованное название города
+  
         self.labelWeatherTemp.text = "\(temp.roundingNumber())°"
         self.labelWeatherDescription.text = description.description
-        self.labelWeatherFeelsLike.text = "ощущается как \(feelsLike)°"
+        self.labelWeatherFeelsLike.text = String(format: "HomeViewController.labelWeatherFeelsLike".localizationString(), feelsLike)
+
         
         tableView.reloadData()
         verticalStackWeather.isHidden = false
@@ -300,7 +306,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
   func numberOfSections(in tableView: UITableView) -> Int { 2 }
   
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    section == 0 ? "ПОЧАСАВОЙ ПРОГНОЗ" : "ЕЖЕДНЕВНЫЙ ПРОГНОЗ"
+    section == 0 ? "HomeViewController.titleForHeaderInSectionOne".localizationString() : "HomeViewController.titleForHeaderInSectionTwo".localizationString()
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -331,7 +337,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         }
       }
       
-      cell.labelWeatherTime.text = indexPath.row == 0 ? "Сейчас" : weatherData?.daily[indexPath.row].dt?.dateFormatter(dateFormat: .dayWeek)
+      cell.labelWeatherTime.text = indexPath.row == 0 ? "HoursWeatherTableViewCell.labelWeatherTime".localizationString() : weatherData?.daily[indexPath.row].dt?.dateFormatter(dateFormat: .dayWeek)
       cell.labelWeatherTempMax.text = "\(tempMax.roundingNumber())°"
       cell.labelWeatherTempMin.text = "\(tempMin.roundingNumber())°"
       
@@ -379,8 +385,13 @@ extension HomeViewController: CLLocationManagerDelegate {
 
 extension HomeViewController: UITextFieldDelegate {
   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-    let setLetters = CharacterSet.letters // сет букв
     
-    return string.rangeOfCharacter(from: setLetters) != nil // разрешает ввод только букв
+    let setSpaces = CharacterSet.whitespaces
+    let setHyphen = CharacterSet(charactersIn: "-")
+    let setLetters = CharacterSet.letters
+    
+    let superSet = CharacterSet(charactersIn: string)
+  
+    return setSpaces.isSuperset(of: superSet) || setHyphen.isSuperset(of: superSet) || setLetters.isSuperset(of: superSet)
   }
 }

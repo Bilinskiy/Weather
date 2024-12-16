@@ -22,7 +22,7 @@ class HistoryViewController: UIViewController {
     label.textAlignment = .center
     label.font = label.font.withSize(40)
     label.textColor = .black
-    label.text = "History"
+    label.text = "HistoryViewController.labelTitle".localizationString()
     return label
   }()
 
@@ -96,7 +96,8 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     let dateStringFormate = dateFormatter.string(from: dataHistory[indexPath.row].dateHistory)
     
     cell.labelHistory.text = "\(dateStringFormate) | \(dataHistory[indexPath.row].weatherData.temp)°"
-    cell.labelHistoryCoord.text = "lat: \(dataHistory[indexPath.row].lat) lon: \(dataHistory[indexPath.row].lon)"
+   
+    cell.labelHistoryCoord.text = String(format: "HistoryViewController.labelHistoryCoord".localizationString(), dataHistory[indexPath.row].lat, dataHistory[indexPath.row].lon)
     cell.iconMap.isHidden = !dataHistory[indexPath.row].searchMap
     
     return cell

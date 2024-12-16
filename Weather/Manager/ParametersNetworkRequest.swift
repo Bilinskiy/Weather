@@ -13,14 +13,6 @@ protocol NetworkManagerProtocol {
   func getIcon(_ icon: String) async throws -> Data
 }
 
-enum Language {
-  case ru
-  case en
-  case be
-  case fr
-  case pl
-}
-
 enum Units {
   case standard
   case metric
@@ -51,7 +43,11 @@ struct ParametersNetworkRequest {
     return key
   }()
   
-  static let lang: Language = .ru // язык полученных данных
+  static let lang: String = {
+    guard let lang = Locale.current.language.languageCode else {return "en"}
+    return lang.debugDescription
+  }() // язык полученных данных
+  
   static let units: Units = .metric // система измерений
   
   static var baseURL: String = "https://api.openweathermap.org"

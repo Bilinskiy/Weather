@@ -55,10 +55,10 @@ class HistoryTableViewCell: UITableViewCell {
     super.updateConstraints()
     
     iconMap.snp.makeConstraints { make in
-      make.height.equalTo(30)
-      make.width.equalTo(30)
-      make.centerY.equalToSuperview()
-      make.trailing.equalToSuperview().inset(16)
+      make.height.equalTo(20)
+      make.width.equalTo(20)
+      make.top.equalToSuperview().inset(4)
+      make.trailing.equalToSuperview().inset(4)
     }
     
     stackVertical.snp.makeConstraints { make in
