@@ -19,7 +19,7 @@ enum LocationButton { //switch для переключения кнопки Ло
   case off
 }
 
-class HomeViewController: UIViewController, UITextFieldDelegate {
+class HomeViewController: UIViewController {
   
   lazy var statusGetWeather: StatusGetWeather = .location
   var locationButton: LocationButton = .off
@@ -29,11 +29,6 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
   var weatherData: WeatherModel? // все данные о погоде
   var dataBase: DataBaseProtocol = DataBase() // работа с swift data (локальная базаданных)
   var notification: NotificationProtocol = Notification() // работа с локальными уведомлениями (уведомляют о плохой погоде)
-  
-  func textFieldShouldReturn(_ textField: UITextField) -> Bool { // для скрытия клавиатурры при заполнении textfield
-      textField.resignFirstResponder()
-      return true
-  }
   
   lazy var labelInfo: UILabel = {
     var label = UILabel()
@@ -159,6 +154,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
   func alertSearchCity() {
     let alert = UIAlertController(title: "Поиск", message: "Введите название города", preferredStyle: .alert)
     alert.addTextField()
+    alert.textFields?.first?.delegate = self
     alert.textFields?.first?.placeholder = "Названгие города"
     
     let ok = UIAlertAction(title: "Ok", style: .cancel) { _ in
@@ -381,3 +377,10 @@ extension HomeViewController: CLLocationManagerDelegate {
   }
 }
 
+extension HomeViewController: UITextFieldDelegate {
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    let setLetters = CharacterSet.letters // сет букв
+    
+    return string.rangeOfCharacter(from: setLetters) != nil // разрешает ввод только букв
+  }
+}
