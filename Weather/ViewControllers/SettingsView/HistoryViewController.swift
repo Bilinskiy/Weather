@@ -10,21 +10,10 @@ import SnapKit
 
 class HistoryViewController: UIViewController {
 
-  var dataBase: DataBaseProtocol = DataBase()
+//  var dataBase: DataBaseProtocol = DataBase()
   var dataHistory: [HistoryData] = []
   
   let dateFormatter = DateFormatter()
-
-  
-  lazy var labelTitle: UILabel = {
-    var label = UILabel()
-    label.numberOfLines = 2
-    label.textAlignment = .center
-    label.font = label.font.withSize(40)
-    label.textColor = .black
-    label.text = "HistoryViewController.labelTitle".localizationString()
-    return label
-  }()
 
   lazy var tableView: UITableView = {
     var table = UITableView(frame: CGRect(), style: .insetGrouped)
@@ -38,13 +27,13 @@ class HistoryViewController: UIViewController {
     return table
   }()
   
-  
+
   override func viewWillAppear(_ animated: Bool) {
-    dataBase.fetchData(fetchData: { [weak self] result in
+    DataBase.shared.fetchData(fetchData: { [weak self] result in
       guard let self = self else {return}
       switch result {
       case .success(let data):
-        self.dataHistory = data
+        self.dataHistory = data.sorted(by: {$0.dateHistory > $1.dateHistory})
       case .failure(_):
         fatalError()
       }
@@ -55,8 +44,8 @@ class HistoryViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-  
-    view.addSubview(labelTitle)
+    navigationItem.title = "История"
+    navigationItem.largeTitleDisplayMode = .never
     view.addSubview(tableView)
     
     updateViewConstraints()
@@ -65,15 +54,9 @@ class HistoryViewController: UIViewController {
   
   override func updateViewConstraints() {
     super.updateViewConstraints()
-    
-    labelTitle.snp.makeConstraints { make in
-      make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(16)
-      make.leading.equalToSuperview()
-      make.trailing.equalToSuperview()
-    }
-    
+
     tableView.snp.makeConstraints { make in
-      make.top.equalTo(labelTitle.snp.bottom).inset(-16)
+      make.top.equalToSuperview()
       make.bottom.equalToSuperview()
       make.leading.equalToSuperview()
       make.trailing.equalToSuperview()

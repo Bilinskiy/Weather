@@ -27,10 +27,10 @@ class TabBarController: UITabBarController {
     let mapsVC = MapViewController()
     mapsVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "map"), selectedImage: UIImage(systemName: "map.fill"))
     
-    let historyVC = HistoryViewController()
-    historyVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "clock"), selectedImage: UIImage(systemName: "clock.fill"))
+    let settingsVC = NavigationController(rootViewController: SettingsViewController())
+    settingsVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "gearshape"), selectedImage: UIImage(systemName: "gearshape.fill"))
     
-    viewControllers = [mapsVC, firstVC, historyVC]
+    viewControllers = [mapsVC, firstVC, settingsVC]
     self.selectedIndex = 1
   }
   

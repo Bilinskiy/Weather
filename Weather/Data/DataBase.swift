@@ -32,7 +32,6 @@ final class WeatherData {
   var pressure: Int
   var humidity: Int
   
-  
   init(temp: Int, feelsLike: Float, pressure: Int, humidity: Int) {
     self.temp = temp
     self.feelsLike = feelsLike
@@ -42,19 +41,43 @@ final class WeatherData {
   
 }
 
-protocol DataBaseProtocol {
-  func saveData<T>(date: T) where T: PersistentModel
-  func fetchData(fetchData: @escaping (Result<[HistoryData], Error>) -> Void)
+@Model
+final class SettingsData {
+  var measurement: Units
+  var notification: CategoryNotification
+  var formatDate: DateFormat
+  
+  init(measurement: Units, notification: CategoryNotification, formatDate: DateFormat) {
+    self.measurement = measurement
+    self.notification = notification
+    self.formatDate = formatDate
+  }
 }
 
-class DataBase: DataBaseProtocol {
+struct CategoryNotification: Codable {
+    var notification200: Bool
+    var notification500: Bool
+    var notification600: Bool
+}
+
+//protocol DataBaseProtocol {
+////  func saveData<T>(date: T) where T: PersistentModel
+////  func fetchData(fetchData: @escaping (Result<[HistoryData], Error>) -> Void)
+////  func fetchDataSetting(fetchData: @escaping (Result<[SettingsData], Error>) -> Void)
+////  var context: ModelContext? {get}
+//  static var shared: DataBase {get}
+//}
+
+class DataBase {
   
+  static let shared = DataBase()
+
   var container: ModelContainer?
   var context: ModelContext?
   
   init() {
     do {
-      container = try ModelContainer(for: HistoryData.self)
+      container = try ModelContainer(for: HistoryData.self, SettingsData.self)
       if let container {
         context = ModelContext(container)
       }
@@ -74,8 +97,67 @@ class DataBase: DataBaseProtocol {
       }
       
     }
-    
   }
+  
+// Работа с историей запросов для отслеживание изменений в базе данных
+  
+//  func findTransactions(token: DefaultHistoryToken?) -> [DefaultHistoryTransaction] {
+//    var historyDescriptor = HistoryDescriptor<DefaultHistoryTransaction>()
+//    
+//    if let token {
+//      historyDescriptor.predicate = #Predicate { transaction in
+//        transaction.token > token
+//      }
+//    }
+//    
+//    var transactions: [DefaultHistoryTransaction] = []
+//    do {
+//      if let context = context {
+//        transactions = try context.fetchHistory(historyDescriptor)
+//      }
+//    } catch {
+//      fatalError()
+//    }
+//    
+//    return transactions
+//  }
+  
+//  func find(transactions: [DefaultHistoryTransaction]) -> (Set<SettingsData>, DefaultHistoryToken?) {
+//   
+//    
+//    var resultFind: Set<SettingsData> = []
+//    
+//    for transactions in transactions {
+//      for change in transactions.changes {
+//        let modelID = change.changedPersistentIdentifier
+//        let fetchDescriptor = FetchDescriptor<SettingsData>(predicate: #Predicate { trip in
+//          trip.persistentModelID == modelID
+//        })
+//        let fetchResult = try? context?.fetch(fetchDescriptor)
+//        guard let matc = fetchResult?.first else {
+//          continue
+//        }
+//        
+//        switch change {
+//          
+//        case .insert(_):
+//          resultFind.insert(matc)
+//        case .update(_):
+//          resultFind.update(with: matc)
+//        case .delete(_):
+//          resultFind.remove(matc)
+//        default:
+//          break
+//        }
+//        
+//        
+//      }
+//      
+//    }
+//    
+//    return (resultFind, transactions.last?.token)
+//  }
+  
   
   func fetchData(fetchData: @escaping (Result<[HistoryData], Error>) -> Void) {
     let descriptor = FetchDescriptor<HistoryData>()
@@ -83,7 +165,7 @@ class DataBase: DataBaseProtocol {
     if let context {
       
       do {
-        let historyData = try context.fetch(descriptor).sorted(by: {$0.dateHistory > $1.dateHistory})
+        let historyData = try context.fetch(descriptor)
         fetchData(.success(historyData))
       } catch {
         fetchData(.failure(error))
@@ -91,5 +173,24 @@ class DataBase: DataBaseProtocol {
       
     }
   }
-
+  
+  func fetchDataSetting(fetchData: @escaping (Result<[SettingsData], Error>) -> Void) {
+    let descriptor = FetchDescriptor<SettingsData>()
+    
+    if let context {
+      
+      do {
+        let settingsData = try context.fetch(descriptor)
+        fetchData(.success(settingsData))
+      } catch {
+        fetchData(.failure(error))
+      }
+      
+    }
+  }
+  
+  
+  
+  
+  
 }

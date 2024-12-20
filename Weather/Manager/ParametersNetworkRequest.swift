@@ -13,10 +13,10 @@ protocol NetworkManagerProtocol {
   func getIcon(_ icon: String) async throws -> Data
 }
 
-enum Units {
-  case standard
+enum Units: Int, Codable {
   case metric
   case imperial
+  case standard
 }
 
 enum ManagerNetwork {
@@ -48,7 +48,8 @@ struct ParametersNetworkRequest {
     return lang.debugDescription
   }() // язык полученных данных
   
-  static let units: Units = .metric // система измерений
+  static var units: Units = .metric // система измерений
+  static var timeFormat: DateFormat = .hour24 //
   
   static var baseURL: String = "https://api.openweathermap.org"
   

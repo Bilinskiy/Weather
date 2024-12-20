@@ -20,14 +20,14 @@ enum LocationButton { //switch для переключения кнопки Ло
 }
 
 class HomeViewController: UIViewController {
-  
+
   lazy var statusGetWeather: StatusGetWeather = .location
   var locationButton: LocationButton = .off
   
   lazy var networkManager: NetworkManagerProtocol = ParametersNetworkRequest.manager.manager() // в файле ParametersNetworkRequest можно менять через какйто менедж длеать запрос (URLSession or Alamofire)
   
   var weatherData: WeatherModel? // все данные о погоде
-  var dataBase: DataBaseProtocol = DataBase() // работа с swift data (локальная базаданных)
+ // var dataBase: DataBaseProtocol = DataBase() // работа с swift data (локальная базаданных)
   var notification: NotificationProtocol = Notification() // работа с локальными уведомлениями (уведомляют о плохой погоде)
   
   lazy var labelInfo: UILabel = {
@@ -135,9 +135,18 @@ class HomeViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    fetchSettings()
+   
     view.backgroundColor = .orange
     coreManager.requestWhenInUseAuthorization() // запрос на разрешение получения или НЕ получения геолокации
    
+    getData()
+    
+    addSubview()
+    updateViewConstraints()
+  }
+  
+  func getData() {
     if let name = UserDefaults.standard.string(forKey: "getWeather") { // загрузка сохраненного состояния приложения, получение погоды через геолокацию или последний запрос по названию города
       statusGetWeather = .search
       taskWeatherData(name)
@@ -146,10 +155,26 @@ class HomeViewController: UIViewController {
       statusGetWeather = .location
       statusGet()
     }
-    
-    addSubview()
-    updateViewConstraints()
   }
+  
+  func fetchSettings() {
+    DataBase.shared.fetchDataSetting(fetchData: { result in
+      switch result {
+      case .success(let data):
+        if data.isEmpty {
+          let notification = CategoryNotification(notification200: true, notification500: true, notification600: true)
+          DataBase.shared.saveData(date: SettingsData(measurement: .metric, notification: notification, formatDate: .hour24))
+        } else {
+          guard let data = data.first else {return}
+          ParametersNetworkRequest.units = data.measurement
+          ParametersNetworkRequest.timeFormat = data.formatDate
+        }
+      case .failure(_):
+        fatalError()
+      }
+    })
+  }
+  
   
   func alertSearchCity() {
     let alert = UIAlertController(title: "HomeViewController.alertSearchCityTitle".localizationString(), message: "HomeViewController.alertSearchCityMessage".localizationString(), preferredStyle: .alert)
@@ -246,7 +271,7 @@ class HomeViewController: UIViewController {
         
         let weather = WeatherData(temp: temp.roundingNumber(), feelsLike: feelsLike, pressure: pressure, humidity: humidity)
         let dataHistory = HistoryData(dateHistory: Date(), lat: lat, lon: lon, weatherData: weather, searchMap: false)
-        dataBase.saveData(date: dataHistory) // сохраняем данные запроса в базу данных Swift Data
+        DataBase.shared.saveData(date: dataHistory) // сохраняем данные запроса в базу данных Swift Data
         
         guard let dataHourly = weatherData?.hourly else {return}
         notification.notification(data: dataHourly)

@@ -13,7 +13,7 @@ class MapViewController: UIViewController {
  
   let networkManager: NetworkManagerProtocol = ParametersNetworkRequest.manager.manager()
   var currentWeather: Current?
-  var dataBase: DataBaseProtocol = DataBase()
+ // var dataBase: DataBaseProtocol = DataBase()
 
   private let keyGoogleMaps: String = {
     guard let key = Bundle.main.object(forInfoDictionaryKey: "GoogleMapsKey") as? String else { fatalError("GoogleMapsKey not found") }
@@ -142,7 +142,7 @@ extension MapViewController: GMSMapViewDelegate {
       let weatherData = WeatherData(temp: temp.roundingNumber(), feelsLike: feelsLike, pressure: pressure, humidity: humidity)
       let dataHistory = HistoryData(dateHistory: Date(), lat: Float(coordinate.latitude), lon: Float(coordinate.longitude), weatherData: weatherData, searchMap: true)
       
-      dataBase.saveData(date: dataHistory)
+      DataBase.shared.saveData(date: dataHistory)
    
     }
   }

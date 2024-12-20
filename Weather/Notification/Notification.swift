@@ -14,6 +14,10 @@ protocol NotificationProtocol {
 
 class Notification: NotificationProtocol {
   let notificationCenter = UNUserNotificationCenter.current()
+  
+//  var dataBase: DataBaseProtocol = DataBase()
+  var dataSettings: [SettingsData] = []
+
 
   func addNotification(data: Hourly) {
     notificationCenter.requestAuthorization(options: [.alert, .sound]) { [weak self] isAuthorized, error in
@@ -47,15 +51,17 @@ class Notification: NotificationProtocol {
   }
     
     func notification(data: [Hourly]) {
+      fetchSettings()
       notificationCenter.removeAllPendingNotificationRequests()
       
       let filter200 = data.filter({(200..<300).contains($0.weather.first?.id ?? 0)})
       let filter500 = data.filter({(500..<600).contains($0.weather.first?.id ?? 0)})
       let filter600 = data.filter({(600..<700).contains($0.weather.first?.id ?? 0)})
-
-      if !filter200.isEmpty { sortNotification(data: filter200) }
-      if !filter500.isEmpty { sortNotification(data: filter500) }
-      if !filter600.isEmpty { sortNotification(data: filter600) }
+      
+      guard let notification =  dataSettings.first?.notification else {return}
+      if !filter200.isEmpty && notification.notification200 { sortNotification(data: filter200) }
+      if !filter500.isEmpty && notification.notification500 { sortNotification(data: filter500) }
+      if !filter600.isEmpty && notification.notification600{ sortNotification(data: filter600) }
     }
   
   func sortNotification(data: [Hourly]) {
@@ -68,5 +74,16 @@ class Notification: NotificationProtocol {
     }
   }
   
+  func fetchSettings() {
+    DataBase.shared.fetchDataSetting(fetchData: { [weak self] result in
+      guard let self = self else {return}
+      switch result {
+      case .success(let data):
+        dataSettings = data
+      case .failure(_):
+        fatalError()
+      }
+    })
+  }
 
 }
