@@ -10,7 +10,6 @@ import SnapKit
 
 class HistoryViewController: UIViewController {
 
-//  var dataBase: DataBaseProtocol = DataBase()
   var dataHistory: [HistoryData] = []
   
   let dateFormatter = DateFormatter()

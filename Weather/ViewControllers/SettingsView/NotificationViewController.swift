@@ -10,7 +10,6 @@ import SnapKit
 
 class NotificationViewController: UIViewController {
   
- // var dataBase: DataBaseProtocol = DataBase()
   var dataSettings: [SettingsData] = []
   
   init(dataSettings: [SettingsData]) {

@@ -27,7 +27,6 @@ class HomeViewController: UIViewController {
   lazy var networkManager: NetworkManagerProtocol = ParametersNetworkRequest.manager.manager() // в файле ParametersNetworkRequest можно менять через какйто менедж длеать запрос (URLSession or Alamofire)
   
   var weatherData: WeatherModel? // все данные о погоде
- // var dataBase: DataBaseProtocol = DataBase() // работа с swift data (локальная базаданных)
   var notification: NotificationProtocol = Notification() // работа с локальными уведомлениями (уведомляют о плохой погоде)
   
   lazy var labelInfo: UILabel = {

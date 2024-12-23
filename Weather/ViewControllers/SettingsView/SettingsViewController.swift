@@ -10,7 +10,6 @@ import SnapKit
 
 class SettingsViewController: UIViewController {
   
- // var dataBase: DataBaseProtocol = DataBase()
   var dataSettings: [SettingsData] = []
   var modelSettings = [SettingsOptions]()
   

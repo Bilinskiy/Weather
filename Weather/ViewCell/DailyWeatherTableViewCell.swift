@@ -10,7 +10,6 @@ import SnapKit
 
 class DailyWeatherTableViewCell: UITableViewCell {
   
-
   lazy var labelWeatherTime: UILabel = {
     var label = UILabel()
     label.textAlignment = .center

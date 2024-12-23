@@ -10,7 +10,6 @@ import SnapKit
 
 class TimeFormatViewController: UIViewController {
   
-//  var dataBase: DataBaseProtocol = DataBase()
   var dataSettings: [SettingsData]
   
   init(dataSettings: [SettingsData]) {

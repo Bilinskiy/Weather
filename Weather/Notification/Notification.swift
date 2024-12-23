@@ -13,9 +13,9 @@ protocol NotificationProtocol {
 }
 
 class Notification: NotificationProtocol {
+    
   let notificationCenter = UNUserNotificationCenter.current()
-  
-//  var dataBase: DataBaseProtocol = DataBase()
+
   var dataSettings: [SettingsData] = []
 
 

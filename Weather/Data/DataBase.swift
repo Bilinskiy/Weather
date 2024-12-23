@@ -60,14 +60,6 @@ struct CategoryNotification: Codable {
     var notification600: Bool
 }
 
-//protocol DataBaseProtocol {
-////  func saveData<T>(date: T) where T: PersistentModel
-////  func fetchData(fetchData: @escaping (Result<[HistoryData], Error>) -> Void)
-////  func fetchDataSetting(fetchData: @escaping (Result<[SettingsData], Error>) -> Void)
-////  var context: ModelContext? {get}
-//  static var shared: DataBase {get}
-//}
-
 class DataBase {
   
   static let shared = DataBase()
@@ -75,7 +67,7 @@ class DataBase {
   var container: ModelContainer?
   var context: ModelContext?
   
-  init() {
+private init() {
     do {
       container = try ModelContainer(for: HistoryData.self, SettingsData.self)
       if let container {

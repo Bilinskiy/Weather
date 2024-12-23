@@ -10,7 +10,6 @@ import SnapKit
 
 class MeasurementSystemViewController: UIViewController {
   
- // var dataBase: DataBaseProtocol = DataBase()
   var dataSettings: [SettingsData] = []
   
   init(dataSettings: [SettingsData]) {
